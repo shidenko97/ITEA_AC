@@ -59,7 +59,7 @@ for insight in insights:
     # First task in README.md
     result.append(recursive_remove_unused(insight, UNUSED_KEYS))
 
-    # Third task in README.MD
+    # Third task in README.md
     if ("objective" in result[-1].keys()) and (objective := result[-1]["objective"]):
         list_of_objectives.append(objective)
 
