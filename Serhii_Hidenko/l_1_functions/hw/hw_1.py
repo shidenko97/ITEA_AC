@@ -63,4 +63,7 @@ for insight in insights:
     if ("objective" in result[-1].keys()) and (objective := result[-1]["objective"]):
         list_of_objectives.append(objective)
 
-print(list_of_objectives)
+# Fourth task in README.md
+dict_of_objectives = dict(map(lambda i: (i, list_of_objectives[i]), range(len(list_of_objectives))))
+
+print(dict_of_objectives)
