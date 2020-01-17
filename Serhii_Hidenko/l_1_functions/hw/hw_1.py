@@ -52,10 +52,15 @@ UNUSED_KEYS = {
 }
 
 result = []
+list_of_objectives = []
 
 for insight in insights:
 
     # First task in README.md
     result.append(recursive_remove_unused(insight, UNUSED_KEYS))
 
-print(result)
+    # Third task in README.MD
+    if ("objective" in result[-1].keys()) and (objective := result[-1]["objective"]):
+        list_of_objectives.append(objective)
+
+print(list_of_objectives)
