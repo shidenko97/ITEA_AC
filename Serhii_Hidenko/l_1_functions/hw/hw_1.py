@@ -37,6 +37,26 @@ def recursive_remove_unused(dict_block, unused) -> dict:
     return result_dict
 
 
+def get_insight_sort_string(insight) -> str:
+    """
+    Get a string of insight sort parameters
+    :param insight: Insight to be analyzed
+    :type insight: dict
+    :return: String of sort parameters
+    :rtype: str
+    """
+
+    sort_string = ""
+    sort_keys = ("type", "api", "report_name", "objective")
+
+    for key in sort_keys:
+
+        if key in insight:
+            sort_string += key
+
+    return sort_string
+
+
 UNUSED_KEYS = {
     "period": None,
     "count": None,
@@ -78,3 +98,6 @@ dict_of_objectives = dict(map(lambda i: (i, list_of_objectives[i]), range(len(li
 
 # Sixth task in README.md
 unique_objectives = set(list_of_objectives)
+
+# Eighth task in README.md
+sorted_insights = sorted(insights, key=lambda i: get_insight_sort_string(i))
