@@ -1,3 +1,4 @@
+from pprint import pprint
 from hw_start import insights
 
 
@@ -57,6 +58,14 @@ def get_insight_sort_string(insight) -> str:
     return sort_string
 
 
+def transform_param(insight, param, func):
+
+    if param in insight.keys():
+        insight[param] = func(insight[param])
+
+    return insight
+
+
 UNUSED_KEYS = {
     "period": None,
     "count": None,
@@ -91,7 +100,11 @@ for insight in insights:
 
         for each_metric in (sums, sum_levels, sum_generals):
             metrics_sum = sum(each_metric)
-            print(f"Sum: {metrics_sum}, Avg: {metrics_sum / len(each_metric)}")
+            # print(f"Sum: {metrics_sum}, Avg: {metrics_sum / len(each_metric)}")
+
+    # Ninth and tenth task in README.md
+    pprint(transform_param(insight, "report_name", lambda a: a.upper() if a == "device" else a))
+    pprint(transform_param(insight, "page_id", lambda a: None if a == "(not set)" else a))
 
 # Fourth task in README.md
 dict_of_objectives = dict(map(lambda i: (i, list_of_objectives[i]), range(len(list_of_objectives))))
