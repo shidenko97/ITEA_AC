@@ -58,7 +58,18 @@ def get_insight_sort_string(insight) -> str:
     return sort_string
 
 
-def transform_param(insight, param, func):
+def transform_param(insight, param, func) -> dict:
+    """
+    Change `param` of `insight` by `func`
+    :param insight: Insight to be analyzed
+    :type insight: dict
+    :param param: Parameter to changed
+    :type param: str
+    :param func: Function for parameter changing
+    :type func: Any
+    :return: Insight with a transformed parameter
+    :rtype: dict
+    """
 
     if param in insight.keys():
         insight[param] = func(insight[param])
@@ -88,6 +99,31 @@ for insight in insights:
     # First task in README.md
     result.append(recursive_remove_unused(insight, UNUSED_KEYS))
 
+    # Second task in README.md
+    if "entities_affected" in insight and "table_columns" in insight["entities_affected"]:
+
+        table_columns = []
+
+        for table_column in insight["entities_affected"]["table_columns"]:
+
+            if ("unit" in table_column and table_column["unit"] == "EUR") or "unit" not in table_column:
+                table_columns.append(table_column)
+
+        insight["entities_affected"]["table_columns"] = table_columns
+
+        pprint(insight["entities_affected"]["table_columns"])
+
+    if "metric_sums" in insight:
+
+        metrics_sums = []
+
+        for metric_sum in insight["metric_sums"]:
+
+            if ("unit_key" in metric_sum and metric_sum["unit_key"] == "EUR") or "unit_key" not in metric_sum:
+                metrics_sums.append(metric_sum)
+
+        insight["metric_sums"] = metrics_sums
+
     # Third task in README.md
     if ("objective" in result[-1].keys()) and (objective := result[-1]["objective"]):
         list_of_objectives.append(objective)
@@ -103,8 +139,8 @@ for insight in insights:
             # print(f"Sum: {metrics_sum}, Avg: {metrics_sum / len(each_metric)}")
 
     # Ninth and tenth task in README.md
-    pprint(transform_param(insight, "report_name", lambda a: a.upper() if a == "device" else a))
-    pprint(transform_param(insight, "page_id", lambda a: None if a == "(not set)" else a))
+    # print(transform_param(insight, "report_name", lambda a: a.upper() if a == "device" else a))
+    # print(transform_param(insight, "page_id", lambda a: None if a == "(not set)" else a))
 
 # Fourth task in README.md
 dict_of_objectives = dict(map(lambda i: (i, list_of_objectives[i]), range(len(list_of_objectives))))
