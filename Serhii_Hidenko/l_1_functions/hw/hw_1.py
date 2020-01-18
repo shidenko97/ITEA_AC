@@ -63,10 +63,18 @@ for insight in insights:
     if ("objective" in result[-1].keys()) and (objective := result[-1]["objective"]):
         list_of_objectives.append(objective)
 
+    # Seventh task in README.md
+    if "metric_sums" in insight.keys():
+        sums = list(map(lambda metric_sum: metric_sum["sum"], insight["metric_sums"]))
+        sum_levels = list(map(lambda metric_sum: metric_sum["sum_level"], insight["metric_sums"]))
+        sum_generals = list(map(lambda metric_sum: metric_sum["sum_general"], insight["metric_sums"]))
+
+        for each_metric in (sums, sum_levels, sum_generals):
+            metrics_sum = sum(each_metric)
+            print(f"Sum: {metrics_sum}, Avg: {metrics_sum / len(each_metric)}")
+
 # Fourth task in README.md
 dict_of_objectives = dict(map(lambda i: (i, list_of_objectives[i]), range(len(list_of_objectives))))
 
 # Sixth task in README.md
 unique_objectives = set(list_of_objectives)
-
-print(unique_objectives)
