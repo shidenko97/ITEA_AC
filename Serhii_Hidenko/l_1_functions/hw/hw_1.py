@@ -66,4 +66,7 @@ for insight in insights:
 # Fourth task in README.md
 dict_of_objectives = dict(map(lambda i: (i, list_of_objectives[i]), range(len(list_of_objectives))))
 
-print(dict_of_objectives)
+# Sixth task in README.md
+unique_objectives = set(list_of_objectives)
+
+print(unique_objectives)
