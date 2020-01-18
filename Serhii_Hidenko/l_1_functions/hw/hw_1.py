@@ -77,6 +77,26 @@ def transform_param(insight, param, func) -> dict:
     return insight
 
 
+def recursive_find_parameter(insight, parameter) -> list:
+
+    result = []
+
+    for key, value in insight.items():
+
+        if key == parameter:
+            result.append(value)
+        elif isinstance(value, dict):
+            result.extend(recursive_find_parameter(value, parameter))
+        elif isinstance(value, list):
+
+            for item in value:
+
+                if isinstance(item, dict):
+                    result.extend(recursive_find_parameter(item, parameter))
+
+    return result
+
+
 UNUSED_KEYS = {
     "period": None,
     "count": None,
@@ -93,8 +113,13 @@ UNUSED_KEYS = {
 
 result = []
 list_of_objectives = []
+insights_campaigns = {}
+
+i = 0
 
 for insight in insights:
+
+    i += 1
 
     # First task in README.md
     result.append(recursive_remove_unused(insight, UNUSED_KEYS))
@@ -111,8 +136,6 @@ for insight in insights:
 
         insight["entities_affected"]["table_columns"] = table_columns
 
-        pprint(insight["entities_affected"]["table_columns"])
-
     if "metric_sums" in insight:
 
         metrics_sums = []
@@ -127,6 +150,8 @@ for insight in insights:
     # Third task in README.md
     if ("objective" in result[-1].keys()) and (objective := result[-1]["objective"]):
         list_of_objectives.append(objective)
+
+    insights_campaigns[i] = recursive_find_parameter(insight, "campaign_id")
 
     # Seventh task in README.md
     if "metric_sums" in insight.keys():
