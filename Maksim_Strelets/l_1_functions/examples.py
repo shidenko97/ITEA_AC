@@ -1,16 +1,31 @@
-# my_list = [1,2,3,4]
+# try:
+#     int(input())
+# except Exception as e:
+#     print(e)
+# else:
+#     print("else")
+# finally:
+#     print("fin")
+#
+#
+my_list = [1,2,3,4]
 #
 # for item in my_list:
 #     print(item)
 #     if item == 3:
 #         break
-# else:
 #     print("fine")
+# else:
+#     pass
 #
-# # while my_list:
-# #     my_list.pop()
+# while my_list:
+#     my_list.pop()
 #
-#
+list_comp = [el for el in range(5)]
+set_comp = {el for el in range(5)}
+dict_comp = {el: el for el in range(5)}
+gen_comp = {el for el in range(5)}
+pass
 # def add_one(number):
 #      y = number + 1
 #      return y
