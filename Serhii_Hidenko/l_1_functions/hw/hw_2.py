@@ -36,3 +36,14 @@ for insight in insights:
             "sum_general": metric_sum["sum_general"],
             "summary": metric_sum["summary"]
         })
+
+list_of_entities = []
+
+for insight in insights:
+
+    if "entities_affected" not in insight:
+        continue
+
+    list_of_entities += filter(lambda entity: entity["spend_sum"] > 200, insight["entities_affected"]["entities"])
+
+print(list_of_entities)
