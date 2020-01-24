@@ -42,6 +42,45 @@ class BaseInsight:
             self.metrics = {metric_key: MetricSummary(**metric_params) for metric_key, metric_params in metrics.items()}
 
 
+class FacebookInsight(BaseInsight):
+
+    def __init__(self, dimensions_dict=None, dimensions=None, **kwargs):
+
+        self.dimensions_dict = dimensions_dict
+        self.dimensions = dimensions
+
+        super().__init__(**kwargs)
+
+
+class GoogleInsight(BaseInsight):
+
+    def __init__(self, actions=None, **kwargs):
+
+        self.actions = actions
+
+        super().__init__(**kwargs)
+
+
+class TwitterInsight(BaseInsight):
+
+    def __init__(self, first_date=None, last_date=None, **kwargs):
+
+        self.first_date = first_date
+        self.last_date = last_date
+
+        super().__init__(**kwargs)
+
+
+class SnapchatInsight(BaseInsight):
+
+    def __init__(self, weight=None, **kwargs):
+
+        self.weight = weight
+        self.type = kwargs["type"] if "type" in kwargs else None
+
+        super().__init__(**kwargs)
+
+
 class MetricSummary:
 
     def __init__(self, metric=None, metric_level=None, metric_average=None, is_outlier=None, true_sign=None, sign=None,
@@ -62,12 +101,37 @@ class MetricSummary:
         self.unit_key = unit_key
 
 
-# Task 1 from README.md
-for insight in insights:
+if __name__ == "__main__":
 
-    try:
-        bi = BaseInsight(**insight)
-    except ValueError as err:
-        print(f"Error: {err}")
-    else:
-        print(bi.__dict__)
+    # Task 1 from README.md
+    for insight in insights:
+
+        try:
+            bi = FacebookInsight(**insight)
+        except ValueError as err:
+            print(f"Error: {err}")
+        else:
+            print(bi.__dict__)
+
+    # Task 2 from README.md
+    CLASSES = {
+        1: FacebookInsight,
+        2: GoogleInsight,
+        3: TwitterInsight,
+        4: SnapchatInsight
+    }
+
+    for insight in insights:
+
+        api = insight["api"] if "api" in insight else None
+
+        insight_class = CLASSES.get(api, BaseInsight)
+
+        print(f"{insight_class.__name__} class: ", end="\t")
+
+        try:
+            bi = insight_class(**insight)
+        except ValueError as err:
+            print(f"Error: {err}")
+        else:
+            print(bi.__dict__)
