@@ -50,7 +50,10 @@ def dict_get(dictionaries, name):
     for el in dictionaries:
         temp = elem_get(el, name)
         if temp:
-            res += temp
+            if type(temp) is list:
+                res += temp
+            else:
+                res.append(temp)
 
     return res
 
