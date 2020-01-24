@@ -27,7 +27,7 @@ class BaseInsight:
         valid_values = (1, 2, 3, 4)
 
         if self.api not in valid_values:
-            raise ValueError(f"Incorrect value [{self.api}] for attribute api")
+            pass  # raise ValueError(f"Incorrect value [{self.api}] for attribute api")
 
     def _create_metrics(self, metrics):
         """
@@ -135,3 +135,21 @@ if __name__ == "__main__":
             print(f"Error: {err}")
         else:
             print(bi.__dict__)
+
+    # Task 3 from README.md
+    def insight_builder(insight_dict):
+        """"""
+
+        api_val = insight["api"] if "api" in insight_dict else None
+
+        template_class = CLASSES.get(api_val, BaseInsight)
+
+        attributes = [attr for attr in dir(template_class()) if not attr.startswith("__") and
+                      not attr.endswith("__") and not attr.startswith("_")]
+
+        return {attribute: insight_dict[attribute] for attribute in attributes if attribute in insight_dict}
+
+
+    for insight in insights:
+
+        print(insight_builder(insight))
