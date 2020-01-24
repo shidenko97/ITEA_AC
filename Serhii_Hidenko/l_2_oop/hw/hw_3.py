@@ -123,9 +123,9 @@ if __name__ == "__main__":
 
     for insight in insights:
 
-        api = insight["api"] if "api" in insight else None
+        api_value = insight["api"] if "api" in insight else None
 
-        insight_class = CLASSES.get(api, BaseInsight)
+        insight_class = CLASSES.get(api_value, BaseInsight)
 
         print(f"{insight_class.__name__} class: ", end="\t")
 
