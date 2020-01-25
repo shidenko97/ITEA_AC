@@ -3,7 +3,7 @@ from Serhii_Hidenko.l_2_oop.hw.facebookinsight import FacebookInsight
 from Serhii_Hidenko.l_2_oop.hw.googleinsight import GoogleInsight
 from Serhii_Hidenko.l_2_oop.hw.snapchatinsight import SnapchatInsight
 from Serhii_Hidenko.l_2_oop.hw.twitterinsight import TwitterInsight
-from Yurii_Khomych.l_1_functions.hw_start import insights
+from Serhii_Hidenko.source.hw_start import insights
 
 
 def get_class_for_insight(api=None) -> BaseInsight:

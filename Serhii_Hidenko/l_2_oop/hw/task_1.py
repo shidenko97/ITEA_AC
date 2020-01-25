@@ -1,5 +1,5 @@
 from Serhii_Hidenko.l_2_oop.hw.baseinsight import BaseInsight
-from Yurii_Khomych.l_1_functions.hw_start import insights
+from Serhii_Hidenko.source.hw_start import insights
 
 
 if __name__ == "__main__":
