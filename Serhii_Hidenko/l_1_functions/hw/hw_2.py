@@ -1,4 +1,4 @@
-from Yurii_Khomych.l_1_functions.hw_start import insights
+from Serhii_Hidenko.source.hw_start import insights
 
 
 FORMULAS = {
