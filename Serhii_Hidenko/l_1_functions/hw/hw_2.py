@@ -9,41 +9,43 @@ FORMULAS = {
 }
 
 
-for insight in insights:
+if __name__ == "__main__":
 
-    if "period" not in insight:
-        continue
+    for insight in insights:
 
-    # Set period by formula
-    period = 7 if (isinstance(insight["period"], int) and insight["period"] > 4) or insight["period"] is None else \
-        insight["period"]
+        if "period" not in insight:
+            continue
 
-    for metric_sum in insight["metric_sums"]:
+        # Set period by formula
+        period = 7 if (isinstance(insight["period"], int) and insight["period"] > 4) or insight["period"] is None else \
+            insight["period"]
 
-        # Get formula from dict
-        summary_func = FORMULAS.get(insight["api"], lambda: lambda: 0)
+        for metric_sum in insight["metric_sums"]:
 
-        try:
-            metric_sum["summary"] = summary_func(period, **metric_sum)
-        except ZeroDivisionError:
-            metric_sum["summary"] = 0
+            # Get formula from dict
+            summary_func = FORMULAS.get(insight["api"], lambda: lambda: 0)
 
-        print({
-            "period": period,
-            "api": insight["api"],
-            "sum": metric_sum["sum"],
-            "sum_level": metric_sum["sum_level"],
-            "sum_general": metric_sum["sum_general"],
-            "summary": metric_sum["summary"]
-        })
+            try:
+                metric_sum["summary"] = summary_func(period, **metric_sum)
+            except ZeroDivisionError:
+                metric_sum["summary"] = 0
 
-list_of_entities = []
+            print({
+                "period": period,
+                "api": insight["api"],
+                "sum": metric_sum["sum"],
+                "sum_level": metric_sum["sum_level"],
+                "sum_general": metric_sum["sum_general"],
+                "summary": metric_sum["summary"]
+            })
 
-for insight in insights:
+    list_of_entities = []
 
-    if "entities_affected" not in insight:
-        continue
+    for insight in insights:
 
-    list_of_entities += filter(lambda entity: entity["spend_sum"] > 200, insight["entities_affected"]["entities"])
+        if "entities_affected" not in insight:
+            continue
 
-print(list_of_entities)
+        list_of_entities += filter(lambda entity: entity["spend_sum"] > 200, insight["entities_affected"]["entities"])
+
+    print(list_of_entities)

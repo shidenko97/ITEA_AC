@@ -154,8 +154,8 @@ if __name__ == "__main__":
                 if ("unit_key" in metric_sum and metric_sum["unit_key"] == "EUR") or "unit_key" not in metric_sum:
                     metrics_sums.append(metric_sum)
 
-        except KeyError:
-            pass
+        except KeyError as err:
+            print(f"Error handled: {err}")
         else:
 
             insight["metric_sums"] = metrics_sums
@@ -184,11 +184,11 @@ if __name__ == "__main__":
         transfer_func = transform_param(insight)
 
         # Ninth task in README.md
-        insight = transfer_func(param="report_name", func=lambda a: a.upper() if a == "device" else a)
+        insight = transfer_func(param="report_name", func=lambda value: value.upper() if value == "device" else value)
         print(f"\t\tNinth task result: {insight}")
 
         # Tenth task in README.md
-        insight = transfer_func(param="page_id", func=lambda a: None if a == "(not set)" else a)
+        insight = transfer_func(param="page_id", func=lambda value: None if value == "(not set)" else value)
         print(f"\t\tTenth task result: {insight}")
 
     print(f"\tThird task result: {list_of_objectives}")
