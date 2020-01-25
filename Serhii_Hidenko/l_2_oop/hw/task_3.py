@@ -11,7 +11,7 @@ def insight_builder(insight_dict) -> dict:
     :rtype: dict
     """
 
-    api = insight["api"] if "api" in insight_dict else None
+    api = insight_dict["api"] if "api" in insight_dict else None
 
     insight_class = get_class_for_insight(api)
 
@@ -21,11 +21,13 @@ def insight_builder(insight_dict) -> dict:
     return {attribute: insight_dict[attribute] for attribute in attributes if attribute in insight_dict}
 
 
-for insight in insights:
+if __name__ == "__main__":
 
-    try:
-        ib = insight_builder(insight)
-    except ValueError as err:
-        print(f"Error: {err}")
-    else:
-        print(ib)
+    for insight in insights:
+
+        try:
+            ib = insight_builder(insight)
+        except ValueError as err:
+            print(f"Error: {err}")
+        else:
+            print(ib)

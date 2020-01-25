@@ -23,17 +23,19 @@ def get_class_for_insight(api=None) -> BaseInsight:
     }.get(api, BaseInsight)
 
 
-for insight in insights:
+if __name__ == "__main__":
 
-    api_value = insight["api"] if "api" in insight else None
+    for insight in insights:
 
-    insight_class = get_class_for_insight(api_value)
+        api_value = insight["api"] if "api" in insight else None
 
-    print(f"{insight_class.__name__} class: ", end="\t")
+        insight_class = get_class_for_insight(api_value)
 
-    try:
-        bi = insight_class(**insight)
-    except ValueError as err:
-        print(f"Error: {err}")
-    else:
-        print(bi.__dict__)
+        print(f"{insight_class.__name__} class: ", end="\t")
+
+        try:
+            bi = insight_class(**insight)
+        except ValueError as err:
+            print(f"Error: {err}")
+        else:
+            print(bi.__dict__)

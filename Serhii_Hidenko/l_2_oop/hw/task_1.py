@@ -2,11 +2,13 @@ from Serhii_Hidenko.l_2_oop.hw.baseinsight import BaseInsight
 from Yurii_Khomych.l_1_functions.hw_start import insights
 
 
-for insight in insights:
+if __name__ == "__main__":
 
-    try:
-        bi = BaseInsight(**insight)
-    except ValueError as err:
-        print(f"Error: {err}")
-    else:
-        print(bi.__dict__)
+    for insight in insights:
+
+        try:
+            bi = BaseInsight(**insight)
+        except ValueError as err:
+            print(f"Error: {err}")
+        else:
+            print(bi.__dict__)
