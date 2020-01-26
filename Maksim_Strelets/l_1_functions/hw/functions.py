@@ -118,7 +118,7 @@ def sort(insights_list, key):
     return res
 
 
-def summary(period, api, summ, sum_level, sum_general):
+def summary(period, api, summ, sum_level, sum_general, **kwargs):
     if period > 4 or period is None:
         period = 7
     if sum_general == 0:
@@ -136,18 +136,15 @@ def calc_by_formula(insights_list):
     keys = ["period", "api", "metric_sums.sum", "metric_sums.sum_level", "metric_sums.sum_general"]
     res = []
     for insight in insights_list:
-        temp = {}
-        for key in keys:
-            temp[key] = elem_get(insight, key)
-        if None in temp.values():
+        if "metric_sums" not in insight.keys():
             continue
-
-        for i in range(len(temp["metric_sums.sum"])):
-            val = summary(period=int(temp["period"]), api=int(temp["api"]),
-                          summ=int(temp["metric_sums.sum"][i]),
-                          sum_level=int(temp["metric_sums.sum_level"][i]),
-                          sum_general=int(temp["metric_sums.sum_general"][i]))
-            if val:
+        for i in range(len(insight["metric_sums"])):
+            insight["metric_sums"][i]["summ"] = insight["metric_sums"][i]["sum"]
+            try:
+                val = summary(**{**insight, **insight["metric_sums"][i]})
+            except Exception as e:
+                print(e)
+            else:
                 res.append(val)
     return res
 
