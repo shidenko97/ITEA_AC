@@ -1,4 +1,4 @@
-from Maksim_Strelets.l_2_oop.hw.BaseInsight import *
+from Maksim_Strelets.l_2_oop.hw.base_insight import *
 
 
 class FacebookInsight(BaseInsight):

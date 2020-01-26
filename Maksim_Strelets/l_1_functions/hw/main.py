@@ -36,7 +36,7 @@ removable = ["period", "count", "total_count", "page_id", "entities_affected.ent
 
 
 # task 11
-# calc_by_formula(insights)
+calc_by_formula(insights)
 
 
 # task 12
