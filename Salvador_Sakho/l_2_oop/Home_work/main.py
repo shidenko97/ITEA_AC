@@ -20,3 +20,5 @@ if __name__ == '__main__':
     snapchat_insight = SnapchatInsight()
     for data in snapchat_insight.get_insight():
         print(data)
+
+    print(snapchat_insight.insight_builder(['weight', 'type']))
