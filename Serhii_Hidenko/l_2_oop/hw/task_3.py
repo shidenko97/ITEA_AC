@@ -1,3 +1,5 @@
+from copy import deepcopy
+from Serhii_Hidenko.l_2_oop.hw.baseinsight import BaseInsight
 from Serhii_Hidenko.l_2_oop.hw.task_2 import get_class_for_insight
 from Serhii_Hidenko.source.hw_start import insights
 
@@ -27,7 +29,10 @@ if __name__ == "__main__":
 
         try:
             ib = insight_builder(insight)
+            copied = deepcopy(ib)
+            insight_from_copy = BaseInsight(**copied)
         except ValueError as err:
             print(f"Error: {err}")
         else:
             print(ib)
+            print(insight_from_copy.__dict__)
