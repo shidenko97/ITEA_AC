@@ -20,4 +20,5 @@ def insight_builder(insight_list):
 
 
 a = insight_builder(insights)
+
 pass

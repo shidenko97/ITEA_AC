@@ -1,4 +1,5 @@
 class MetricSummary:
+
     def __init__(self, metric_name, metric, metric_level, metric_average,
                  is_outlier, true_sign, sign, mark, unit,
                  metric_name_frontend, mark_key, metric_name_frontend_key,
