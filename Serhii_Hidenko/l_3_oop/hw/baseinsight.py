@@ -1,5 +1,6 @@
 from Serhii_Hidenko.l_3_oop.hw.metricsummary import MetricSummary
 from Serhii_Hidenko.l_3_oop.hw.abstractinsight import AbstractInsight
+from Serhii_Hidenko.l_3_oop.hw.decorators import execution_time_and_result_decorator
 
 
 class BaseInsight(AbstractInsight):
@@ -42,11 +43,13 @@ class BaseInsight(AbstractInsight):
         return "print"
 
     @property
+    @execution_time_and_result_decorator(filename="functions_executions.txt")
     def api_name(self):
         """Get network name"""
 
         return __class__.__name__.replace("Insight", "")
 
+    @execution_time_and_result_decorator(filename="functions_executions.txt")
     def _check_api_is_correct(self):
         """Check is api attribute a valid value"""
 
@@ -55,6 +58,7 @@ class BaseInsight(AbstractInsight):
         if self.api not in valid_values:
             raise ValueError(f"Incorrect value [{self.api}] for attribute api")
 
+    @execution_time_and_result_decorator(filename="functions_executions.txt")
     def calculate_sum_of_all_metrics(self):
         """Calculate sum of all metrics instances"""
 
