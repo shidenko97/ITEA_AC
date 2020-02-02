@@ -1,8 +1,8 @@
 from Serhii_Hidenko.l_3_oop.hw.metricsummary import MetricSummary
-from Serhii_Hidenko.l_3_oop.hw.metainsight import MetaInsight
+from Serhii_Hidenko.l_3_oop.hw.abstractinsight import AbstractInsight
 
 
-class BaseInsight(metaclass=MetaInsight):
+class BaseInsight(AbstractInsight):
 
     def __init__(self, metric_name=None, api=None, report_name=None, objective=None, unit=None, currency=None,
                  validator_insight_type=None, metric_summary=None, **kwargs):
