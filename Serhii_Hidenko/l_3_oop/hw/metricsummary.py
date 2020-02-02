@@ -1,6 +1,3 @@
-import json
-
-
 class MetricSummary:
 
     def __init__(self, metric=None, metric_level=None, metric_average=None, is_outlier=None, true_sign=None, sign=None,
