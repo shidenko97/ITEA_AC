@@ -2,6 +2,7 @@ from Serhii_Hidenko.l_3_oop.hw.baseinsight import BaseInsight
 
 
 class FacebookInsight(BaseInsight):
+    """Facebook class for insight"""
 
     def __init__(self, dimensions_dict=None, dimensions=None, **kwargs):
 

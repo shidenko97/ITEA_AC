@@ -1,4 +1,5 @@
 class MetaInsight(type):
+    """Metaclass for Insight"""
 
     def __call__(cls, *args, **kwargs):
         """

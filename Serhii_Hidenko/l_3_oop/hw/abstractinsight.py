@@ -2,6 +2,7 @@ from abc import ABCMeta, abstractmethod
 
 
 class AbstractInsight(metaclass=ABCMeta):
+    """Abstract class for Insight"""
 
     @abstractmethod
     def _check_api_is_correct(self):

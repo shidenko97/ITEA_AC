@@ -3,6 +3,7 @@ import time
 
 
 def execution_time_and_result_decorator(func=None, *, filename="functions_executions.txt"):
+    """Decorator for writing to file functions execution time and results"""
 
     def outer_wrapper(func):
 
