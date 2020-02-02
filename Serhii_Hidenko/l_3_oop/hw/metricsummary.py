@@ -1,3 +1,6 @@
+import json
+
+
 class MetricSummary:
 
     def __init__(self, metric=None, metric_level=None, metric_average=None, is_outlier=None, true_sign=None, sign=None,
@@ -16,3 +19,15 @@ class MetricSummary:
         self.mark_key = mark_key
         self.metric_name_frontend_key = metric_name_frontend_key
         self.unit_key = unit_key
+
+    def calculate_sum_of_all_attributes(self):
+        """Calculate sum of all numerical metrics"""
+
+        sum = 0
+
+        for key, val in self.__dict__.items():
+
+            if isinstance(val, (int, float)):
+                sum += val
+
+        return sum

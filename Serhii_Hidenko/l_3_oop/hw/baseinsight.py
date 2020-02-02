@@ -31,6 +31,18 @@ class BaseInsight(metaclass=MetaInsight):
         if self.api not in valid_values:
             raise ValueError(f"Incorrect value [{self.api}] for attribute api")
 
+    def calculate_sum_of_all_metrics(self):
+        """Calculate sum of all metrics instances"""
+
+        sum = 0
+
+        for key, metric in self.metrics.items():
+
+            if metric.metric > 30:
+                sum += metric.calculate_sum_of_all_attributes()
+
+        return sum
+
     @staticmethod
     def _create_metrics(metrics) -> dict:
         """
@@ -65,3 +77,8 @@ class BaseInsight(metaclass=MetaInsight):
             return False
 
         return hash((self.api, self.objective, self.id)) == hash((other.api, other.objective, other.id))
+
+    def __len__(self):
+        """Re-declare __len__ magic method by len of metric attribute"""
+
+        return len(self.metrics)
