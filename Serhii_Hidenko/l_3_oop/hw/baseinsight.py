@@ -15,13 +15,37 @@ class BaseInsight(metaclass=MetaInsight):
         self.metric_name = metric_name
         self.report_name = report_name
         self.objective = objective
-        self.unit = unit
-        self.currency = currency
+        self.__unit = unit
+        self.__currency = currency
         self.id = kwargs["id"] if "id" in kwargs else None
         self.validator_insight_type = validator_insight_type
 
         # Create dict of metrics
         self.metrics = self._create_metrics(metric_summary)
+
+    @property
+    def currency(self):
+        """Getter for `currency` attribute"""
+
+        return self.__currency
+
+    @property
+    def unit(self):
+        """Getter for `unit` attribute"""
+
+        return self.__unit
+
+    @property
+    def print(self):
+        """Getter for `print` attribute"""
+
+        return "print"
+
+    @property
+    def api_name(self):
+        """Get network name"""
+
+        return __class__.__name__.replace("Insight", "")
 
     def _check_api_is_correct(self):
         """Check is api attribute a valid value"""
@@ -42,6 +66,24 @@ class BaseInsight(metaclass=MetaInsight):
                 sum += metric.calculate_sum_of_all_attributes()
 
         return sum
+
+    def get_attribute_by_name(self, name):
+        """Getting attribute of class by name"""
+
+        try:
+            return getattr(self, name)
+        except AttributeError as err:
+            return err
+
+    def print_attribute_by_name(self, name):
+        """Printing attribute of class by name"""
+
+        print(self.get_attribute_by_name(name))
+
+    def get_report_name_uppercase(self):
+        """Get `report_name` attribute in uppercase"""
+
+        return self.report_name.upper()
 
     @staticmethod
     def _create_metrics(metrics) -> dict:
