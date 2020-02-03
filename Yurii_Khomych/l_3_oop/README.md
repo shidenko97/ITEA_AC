@@ -23,5 +23,6 @@ into txt file (filename that you set) and decorate three methods inside BaseInsi
 6. Add print to console transactions values (write method for this action) 
 and remove _copy_of_transactions from class instance in Account class.
 Get from ../l_3_oop/8_context_manager_account.py
+
 Note:
 For each class, method and function write docstrings ;)
