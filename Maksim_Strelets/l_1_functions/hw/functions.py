@@ -2,53 +2,53 @@ import json
 
 
 # удаляет по имени
-def dict_remove(dictionaries, name):
+def dict_remove(insights_list, name):
     path = name.split(".")
 
-    if not (type(dictionaries) is list):
-        dictionaries = [dictionaries]
+    if not (type(insights_list) is list):
+        insights_list = [insights_list]
 
-    for el in dictionaries:
-        if not (type(el) is dict):
+    for insight in insights_list:
+        if not (type(insight) is dict):
             continue
 
-        if not (path[0] in el.keys()):
+        if not (path[0] in insight.keys()):
             continue
 
         if len(path) > 1:
-            dict_remove(el[path[0]], ".".join(path[1:]))
+            dict_remove(insight[path[0]], ".".join(path[1:]))
         else:
-            del el[path[0]]
+            del insight[path[0]]
 
 
-def elem_get(el, key):
+def elem_get(insight, key):
     if type(key) is not str:
         return None
     path = key.split(".")
 
-    if type(el) is list:
-        res = [elem_get(x, key) for x in el]
+    if type(insight) is list:
+        res = [elem_get(x, key) for x in insight]
         return res
 
-    if path[0] not in el.keys():
+    if path[0] not in insight.keys():
         return None
 
     if len(path) > 1:
-        return elem_get(el[path[0]], ".".join(path[1:]))
+        return elem_get(insight[path[0]], ".".join(path[1:]))
     else:
-        return el[key]
+        return insight[key]
 
 
 # возвращает по имени
-def dict_get(dictionaries, name):
+def dict_get(insights_list, name):
     path = name.split(".")
     res = []
 
-    if not (type(dictionaries) is list):
-        dictionaries = [dictionaries]
+    if not (type(insights_list) is list):
+        insights_list = [insights_list]
 
-    for el in dictionaries:
-        temp = elem_get(el, name)
+    for insight in insights_list:
+        temp = elem_get(insight, name)
         if temp:
             if type(temp) is list:
                 res += temp
@@ -59,47 +59,47 @@ def dict_get(dictionaries, name):
 
 
 # поиск в глубину с изменением найденых значений
-def dfs(dictionaries):
-    if not (type(dictionaries) is list):
-        dictionaries = [dictionaries]
+def dfs(insights_list):
+    if not (type(insights_list) is list):
+        insights_list = [insights_list]
 
-    for el in dictionaries:
-        if not (type(el) is dict):
+    for insight in insights_list:
+        if not (type(insight) is dict):
             continue
 
-        for key in el.keys():
-            dfs(el[key])
+        for key in insight.keys():
+            dfs(insight[key])
             keys2rem = []
             if key == "table_columns":
-                for x in el[key]:
+                for x in insight[key]:
                     if x["unit"] != "EUR": keys2rem.append(x)
-                for x in keys2rem: el[key].remove(x)
+                for x in keys2rem: insight[key].remove(x)
             elif key == "metric_sums":
-                for x in el[key]:
+                for x in insight[key]:
                     if x["unit_key"] != "EUR":  keys2rem.append(x)
-                for x in keys2rem: el[key].remove(x)
+                for x in keys2rem: insight[key].remove(x)
             elif key == "report_name":
-                if el[key] == "device":
-                    el[key] = el[key].upper()
+                if insight[key] == "device":
+                    insight[key] = insight[key].upper()
             elif key == "page_id":
-                if el[key] == "(not set)":
-                    el[key] = None
+                if insight[key] == "(not set)":
+                    insight[key] = None
 
 
-def ins_to_dict(dictionaries, key, val=""):
+def ins_to_dict(insights_list, key, val=""):
     if not val:
         val = key
     res = {}
-    for i in range(len(dictionaries)):
-        if key not in dictionaries[i].keys() or val not in dictionaries[i].keys():
+    for i in range(len(insights_list)):
+        if key not in insights_list[i].keys() or val not in insights_list[i].keys():
             continue
-        res[i if key not in dictionaries[i].keys() else dictionaries[i][key]] = dictionaries[i][val]
+        res[i if key not in insights_list[i].keys() else insights_list[i][key]] = insights_list[i][val]
     return res
 
 
 # считает сумму и среднее по заданному пути
-def calculate(dictionaries, name):
-    arr = dict_get(dictionaries, name)
+def calculate(insights_list, name):
+    arr = dict_get(insights_list, name)
     try:
         temp = []
         for x in arr: temp.append(int(x))
@@ -109,19 +109,19 @@ def calculate(dictionaries, name):
 
 
 # сортирует по ключу первого уровня
-def sort(dictionaries, key):
+def sort(insights_list, key):
     res = []
-    for el in dictionaries:
-        if key in el.keys():
-            res.append(el)
+    for insight in insights_list:
+        if key in insight.keys():
+            res.append(insight)
     res.sort(key=lambda x: x[key])
-    for el in dictionaries:
-        if key not in el.keys():
-            res.append(el)
+    for insight in insights_list:
+        if key not in insight.keys():
+            res.append(insight)
     return res
 
 
-def summary(period, api, summ, sum_level, sum_general):
+def summary(period, api, summ, sum_level, sum_general, **kwargs):
     if period > 4 or period is None:
         period = 7
     if sum_general == 0:
@@ -135,26 +135,27 @@ def summary(period, api, summ, sum_level, sum_general):
     return formula[api]()
 
 
-def calc_by_formula(dictionaries):
+def calc_by_formula(insights_list):
     keys = ["period", "api", "metric_sums.sum", "metric_sums.sum_level", "metric_sums.sum_general"]
     res = []
-    for el in dictionaries:
-        temp = {}
-        for key in keys:
-            temp[key] = elem_get(el, key)
-        if None in temp.values():
+    for insight in insights_list:
+        if "metric_sums" not in insight.keys():
             continue
-
-        for i in range(len(temp["metric_sums.sum"])):
-            val = summary(period=int(temp["period"]), api=int(temp["api"]),
-                          summ=int(temp["metric_sums.sum"][i]),
-                          sum_level=int(temp["metric_sums.sum_level"][i]),
-                          sum_general=int(temp["metric_sums.sum_general"][i]))
-            if val:
+        for i in range(len(insight["metric_sums"])):
+            insight["metric_sums"][i]["summ"] = insight["metric_sums"][i]["sum"]
+            try:
+                val = summary(**{**insight, **insight["metric_sums"][i]})
+            except Exception as e:
+                print(e)
+            else:
                 res.append(val)
     return res
 
 
-def save(dictionaries):
+def save(insights_list):
     with open('hw_out.json', 'w') as outfile:
+<<<<<<< HEAD
         json.dump(dictionaries, outfile, ensure_ascii=False, indent=4)
+=======
+        json.dump(insights_list, outfile, ensure_ascii=False, indent=4)
+>>>>>>> b60495f3b03ceb8c4c96362b65f55f212185da46
