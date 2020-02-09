@@ -1,7 +1,7 @@
 import functools
 import time
 from functools import total_ordering
-from Maksim_Strelets.l_2_oop.hw.metric_summary import MetricSummary
+from Maksim_Strelets.l_3_oop.hw.metric_summary import MetricSummary
 from Maksim_Strelets.l_3_oop.hw.abstract_insight import *
 
 
@@ -17,7 +17,7 @@ def timer(func):
         run_time = end_time - start_time  # 3
         res = f"Finished {func.__name__!r} in {run_time:.7f} secs with result {value}\n"
         with open("log.txt", "a+") as f:
-            # f.write(res)
+            f.write(res)
             pass
 
     return wrapper_timer

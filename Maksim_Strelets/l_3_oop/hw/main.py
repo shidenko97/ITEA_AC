@@ -1,4 +1,4 @@
-from Maksim_Strelets.l_2_oop.hw.network_dependent_insights import *
+from Maksim_Strelets.l_3_oop.hw.network_dependent_insights import *
 from Yurii_Khomych.l_1_functions.hw_start import insights
 
 
