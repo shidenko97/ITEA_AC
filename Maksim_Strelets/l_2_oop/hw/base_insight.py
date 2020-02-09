@@ -1,11 +1,16 @@
+from functools import total_ordering
 from Maksim_Strelets.l_2_oop.hw.metric_summary import MetricSummary
 
 
+@total_ordering
 class BaseInsight:
-    def __init__(self, metric_name, api, report_name, objective, unit,
-                 currency, id, validator_insight_type, **kwargs):
-        self.metric_name = metric_name
+    def __init__(self, metric_name=None, api=None, report_name=None,
+                 objective=None, unit=None, currency=None, id=None,
+                 validator_insight_type=None, **kwargs):
         self.api = api
+        self.check_api()
+
+        self.metric_name = metric_name
         self.report_name = report_name
         self.objective = objective
         self.unit = unit
@@ -17,8 +22,6 @@ class BaseInsight:
         if "metric_summary" in kwargs.keys():
             self.set_metrics(kwargs["metric_summary"])
 
-        self.check_api()
-
     def check_api(self):
         if self.__getattribute__("api") not in range(1, 5):
             raise KeyError("api key must be in (1, 2, 3, 4)")
@@ -28,7 +31,7 @@ class BaseInsight:
             self.metrics[key] = MetricSummary(key, **metric_summary[key])
 
     def __hash__(self):
-        return hash(id)
+        return hash(self.id)
 
     def __eq__(self, other):
         return hash(self) == hash(other)
