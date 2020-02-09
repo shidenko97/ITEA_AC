@@ -50,3 +50,17 @@ class BaseInsight:
             metrics[key] = MetricSummary(**dict(filter(lambda param: param[0] in metric_attributes, params.items())))
 
         return metrics
+
+    def __eq__(self, other):
+        """
+        Re-declaring standard __eq__ function to comparing hashes of tuple (api, objective, id)
+        :param other: Another object to compare
+        :type other: BaseInsight
+        :return: Result of comparing
+        :rtype: bool
+        """
+
+        if not isinstance(other, BaseInsight):
+            return False
+
+        return hash((self.api, self.objective, self.id)) == hash((other.api, other.objective, other.id))
