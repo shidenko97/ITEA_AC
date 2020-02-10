@@ -1,24 +1,40 @@
 from Salvador_Sakho.l_2_oop.Home_work.Classes.API_classes import \
-    FacebookInsight, GoogleInsight, TwitterInsight, SnapchatInsight
-
+    FacebookInsight, GoogleInsight
+from Salvador_Sakho.l_2_oop.Home_work.Classes.BaseInsight_class import \
+    BaseInsight
 
 if __name__ == '__main__':
-    facebook_insight = FacebookInsight()
-    for data in facebook_insight.get_insight():
-        print(data)
+    base_insight = BaseInsight('cpc', 1, 'device', 'Conversions', 'EUR', 'EUR',
+                               '6156696417772'
+                               , 'Same money - more results')
+    metric_summary = base_insight.metric_summary_init(
+        metric_summary={'metric': '1', 'metric_level': '1',
+                        'metric_average': '1', 'is_outlier': '1'
+            , 'true_sign': '1', 'sign': '1', 'mark': '1', 'unit': '1'
+            , 'metric_name_frontend': '1', 'mark_key': '1'
+            , 'metric_name_frontend_key': '1', 'unit_key': '1'}
+    )
 
-    print(facebook_insight.insight_builder(['dimensions', 'dimensions_dict']))
+    facebook_insight = FacebookInsight(
+        'cpc', 1, 'device', 'Conversions', 'EUR', 'EUR', '6156696417772'
+        , 'Same money - more results'
+        , dimensions_dict={
+            'adset_id': ["6145264569772"]
+            , 'campaign_id': ["6145264558972"]
+        }
+        , dimensions={
+            "name": "dimension:age"
+            , "value": "18-24"
+            , "value_raw": "18-24"
+            , "name_key": "age",
+        }
+    )
+    google_insight = GoogleInsight('cpc', 1, 'device', 'Conversions', 'EUR',
+                                   'EUR', '6156696417772'
+                                   , 'Same money - more results',
+                                   actions="create_new_entity")
 
-    google_insight = GoogleInsight()
-    for data in google_insight.get_insight():
-        print(data)
-
-    twitter_insight = TwitterInsight()
-    for data in twitter_insight.get_insight():
-        print(data)
-
-    snapchat_insight = SnapchatInsight()
-    for data in snapchat_insight.get_insight():
-        print(data)
-
-    print(snapchat_insight.insight_builder(['weight', 'type']))
+    insight_data_1 = base_insight.insight_builder(1)
+    insight_data_2 = base_insight.insight_builder(2)
+    insight_data_3 = base_insight.insight_builder(3)
+    insight_data_4 = base_insight.insight_builder(4)
