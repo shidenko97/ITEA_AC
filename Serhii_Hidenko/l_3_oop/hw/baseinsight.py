@@ -29,11 +29,15 @@ class BaseInsight(AbstractInsight):
     def currency(self):
         """Getter for `currency` attribute"""
 
+        print(self.__currency)
+
         return self.__currency
 
     @property
     def unit(self):
         """Getter for `unit` attribute"""
+
+        print(self.__unit)
 
         return self.__unit
 
