@@ -1,10 +1,9 @@
 from hw_start import insights
-# from operator import itemgetter, attrgetter, methodcaller
-from Remove_unused import sort_key
+from Remove_unused import SORT_KEY
 # mayb Done
 
 
-def eight_cond(insights, sort_key):
+def make_value(insights, sort_key):
     result = []
 
     for keys in sort_key:
@@ -14,4 +13,4 @@ def eight_cond(insights, sort_key):
         return print(result)
 
 
-eight_cond(insights, sort_key)
+make_value(insights, SORT_KEY)

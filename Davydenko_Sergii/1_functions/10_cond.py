@@ -2,7 +2,7 @@ from hw_start import insights
 # Done
 
 
-def tens_deal(insights):
+def calculate_summary(insights):
     if isinstance(insights, dict):
         copy_insights = insights.copy()
         for key, value in insights.items():
@@ -10,13 +10,13 @@ def tens_deal(insights):
                 change = {'page_id': 'None'}
                 copy_insights.update(change)
             else:
-                tens_deal(value)
+                calculate_summary(value)
 
         return print(copy_insights)
 
     elif isinstance(insights, list):
         for insight in insights:
-            tens_deal(insight)
+            calculate_summary(insight)
 
 
-tens_deal(insights)
+calculate_summary(insights)

@@ -1,25 +1,25 @@
 from hw_start import insights
-from Remove_unused import cam_id
+from Remove_unused import CAM_ID
 # Done
 
-
-def fife_cond(insights):
+# five cond, get all unique insights objectives
+def all_uniq(insights):
     result = []
     result1 = {}
 
     if isinstance(insights, dict):
         for key, value in insights.items():
-            if key == cam_id:
+            if key == CAM_ID:
                 result1[key] = value
                 result.append(result1)
                 return print(result1)
             else:
-                fife_cond(value)
+                all_uniq(value)
 
     elif isinstance(insights, list):
         for insight in insights:
-            fife_cond(insight)
+            all_uniq(insight)
         # fife_cond(insight for insight in insights)
 
 
-fife_cond(insights)
+all_uniq(insights)

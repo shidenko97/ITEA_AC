@@ -1,21 +1,21 @@
 from hw_start import insights
-from Remove_unused import obj_dict
+from Remove_unused import OBJ_DICT
 # Done, mayb
 
-def four_cond(insights):
+def all_ins_o_in_dict(insights):
     result = []
     mix = {}
 
     if isinstance(insights, dict):
         for key, value in insights.items():
-            if key == obj_dict:
+            if key == OBJ_DICT:
                 mix[key] = value
                 result.append(mix)
                 return print(result)
 
     elif isinstance(insights, list):
         for insight in insights:
-            four_cond(insight)
+            all_ins_o_in_dict(insight)
 
 
-four_cond(insights)
+all_ins_o_in_dict(insights)

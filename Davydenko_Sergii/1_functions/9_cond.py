@@ -1,7 +1,7 @@
 from hw_start import insights
 # Done
 
-def nine_cond(insights):
+def replace_it(insights):
     if isinstance(insights, dict):
         copy_insights = insights.copy()
         for key, value in insights.items():
@@ -9,12 +9,12 @@ def nine_cond(insights):
                 change = {'report_name': 'DEVICE'}
                 copy_insights.update(change)
             else:
-                nine_cond(value)
+                replace_it(value)
         return print(copy_insights)
 
     elif isinstance(insights, list):
         for insight in insights:
-            nine_cond(insight)
+            replace_it(insight)
 
 
-nine_cond(insights)
+replace_it(insights)
