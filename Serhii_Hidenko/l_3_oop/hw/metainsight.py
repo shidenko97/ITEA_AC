@@ -14,10 +14,7 @@ class MetaInsight(type):
 
         res = super(MetaInsight, cls).__call__(*args, **kwargs)
 
-        api = None
-
-        if "api" in kwargs:
-            api = kwargs["api"]
+        api = kwargs.get("api", None)
 
         # get class period by api parameter
         res.period = {

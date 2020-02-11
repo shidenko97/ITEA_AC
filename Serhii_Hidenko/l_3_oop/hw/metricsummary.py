@@ -21,11 +21,4 @@ class MetricSummary:
     def calculate_sum_of_all_attributes(self):
         """Calculate sum of all numerical metrics"""
 
-        sum = 0
-
-        for key, val in self.__dict__.items():
-
-            if isinstance(val, (int, float)):
-                sum += val
-
-        return sum
+        return sum([val for val in self.__dict__.values() if isinstance(val, (int, float))])
