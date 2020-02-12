@@ -1,10 +1,6 @@
-from Salvador_Sakho.l_2_oop.Home_work.Classes.BaseInsight_class \
-    import BaseInsight
 
-
-class MetricSummary(BaseInsight):
-    def __init__(self, *args, **kwargs):
-        super(MetricSummary, self).__init__(*args, **kwargs)
+class MetricSummary:
+    def __init__(self, **kwargs):
         self.metric = kwargs['metric_summary']['metric']
         self.metric_level = kwargs['metric_summary']['metric_level']
         self.metric_average = kwargs['metric_summary']['metric_average']

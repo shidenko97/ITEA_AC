@@ -1,3 +1,4 @@
+from Salvador_Sakho.l_2_oop.Home_work import insight_builder
 from Salvador_Sakho.l_2_oop.Home_work.Classes.API_classes import \
     FacebookInsight, GoogleInsight
 from Salvador_Sakho.l_2_oop.Home_work.Classes.BaseInsight_class import \
@@ -34,7 +35,7 @@ if __name__ == '__main__':
                                    , 'Same money - more results',
                                    actions="create_new_entity")
 
-    insight_data_1 = base_insight.insight_builder(1)
-    insight_data_2 = base_insight.insight_builder(2)
-    insight_data_3 = base_insight.insight_builder(3)
-    insight_data_4 = base_insight.insight_builder(4)
+    insight_builder.insight_builder(1, 'cpc', 1, 'device', 'Conversions',
+                                    'EUR', 'EUR',
+                                    '6156696417772'
+                                    , 'Same money - more results')
