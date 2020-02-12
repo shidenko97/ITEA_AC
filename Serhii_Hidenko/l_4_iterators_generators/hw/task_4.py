@@ -29,10 +29,30 @@ class OnlyIntList(list):
 
 
 class OnlyIntUserList(UserList):
-    """
-    I don't know how it must works
-    """
-    pass
+    """UserList which same with a simple list"""
+
+    def append(self, value) -> None:
+        """Append value to the list if it is a int"""
+
+        if not isinstance(value, int):
+            raise ValueError("Can apply only integer value")
+
+        super().append(value)
+
+    def extend(self, iterable) -> None:
+        """Add each value of iterable through append method"""
+
+        for val in iterable:
+
+            if val.isdigit():
+                self.append(int(val))
+
+    def pop(self, index: int = ...) -> str:
+        """Just a removing index of list with value returning"""
+
+        val = self[index]
+        del self[index]
+        return val
 
 
 if __name__ == "__main__":
