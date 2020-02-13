@@ -7,7 +7,7 @@ data = {
         "species": "Betelgeusian"
     }
 }
-with open("data_file.json", "w") as write_file:
+with open("data_file", "w") as write_file:
     json.dump(data, write_file, indent=4)
     json_string = json.dumps(data)
     pass
