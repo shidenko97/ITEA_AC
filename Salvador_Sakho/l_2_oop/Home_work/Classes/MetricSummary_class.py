@@ -1,17 +1,14 @@
-
 class MetricSummary:
-    def __init__(self, **kwargs):
-        self.metric = kwargs['metric_summary']['metric']
-        self.metric_level = kwargs['metric_summary']['metric_level']
-        self.metric_average = kwargs['metric_summary']['metric_average']
-        self.is_outlier = kwargs['metric_summary']['is_outlier']
-        self.true_sign = kwargs['metric_summary']['true_sign']
-        self.sign = kwargs['metric_summary']['sign']
-        self.mark = kwargs['metric_summary']['mark']
-        self.unit = kwargs['metric_summary']['unit']
-        self.metric_name_frontend = kwargs['metric_summary'][
-            'metric_name_frontend']
-        self.mark_key = kwargs['metric_summary']['mark_key']
-        self.metric_name_frontend_key = kwargs['metric_summary'][
-            'metric_name_frontend_key']
-        self.unit_key = kwargs['metric_summary']['unit_key']
+    def __init__(self, *args, **kwargs):
+        self.metric = args['metric']
+        self.metric_level = args['metric_level']
+        self.metric_average = args['metric_average']
+        self.is_outlier = args['is_outlier']
+        self.true_sign = args['true_sign']
+        self.sign = args['sign']
+        self.mark = args['mark']
+        self.unit = args['unit']
+        self.metric_name_frontend = args['metric_name_frontend']
+        self.mark_key = args['mark_key']
+        self.metric_name_frontend_key = args['metric_name_frontend_key']
+        self.unit_key = args['unit_key']
