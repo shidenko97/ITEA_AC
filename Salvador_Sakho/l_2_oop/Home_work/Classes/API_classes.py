@@ -3,27 +3,27 @@ from Salvador_Sakho.l_2_oop.Home_work.Classes.BaseInsight_class \
 
 
 class FacebookInsight(BaseInsight):
-    def __init__(self, *args, **kwargs):
-        super(FacebookInsight, self).__init__(*args, **kwargs)
-        self.dimensions_dict = kwargs['dimensions_dict']
-        self.dimensions = kwargs['dimensions']
+    def __init__(self, dimensions_dict=None, dimensions=None, **kwargs):
+        super().__init__(**kwargs)
+        self.dimensions_dict = dimensions_dict
+        self.dimensions = dimensions
 
 
 class GoogleInsight(BaseInsight):
-    def __init__(self, *args, **kwargs):
-        super(GoogleInsight, self).__init__(*args, **kwargs)
-        self.actions = kwargs['actions']
+    def __init__(self, actions=None, **kwargs):
+        super().__init__(**kwargs)
+        self.actions = actions
 
 
 class TwitterInsight(BaseInsight):
-    def __init__(self, *args, **kwargs):
-        super(TwitterInsight, self).__init__(*args, **kwargs)
-        self.first_date = kwargs['first_date'],
-        self.last_date = kwargs['last_date']
+    def __init__(self, first_date=None, last_date=None, **kwargs):
+        super().__init__(**kwargs)
+        self.first_date = first_date,
+        self.last_date = last_date
 
 
 class SnapchatInsight(BaseInsight):
-    def __init__(self, *args, **kwargs):
-        super(SnapchatInsight, self).__init__(*args, **kwargs)
-        self.weight = kwargs['weight'],
-        self.type = kwargs['type']
+    def __init__(self, weight=None, type=None, **kwargs):
+        super().__init__(**kwargs)
+        self.weight = weight,
+        self.type = type

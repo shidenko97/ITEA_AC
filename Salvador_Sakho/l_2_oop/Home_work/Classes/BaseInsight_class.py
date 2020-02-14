@@ -3,8 +3,9 @@ from Salvador_Sakho.l_2_oop.Home_work.Classes.MetricSummary_class \
 
 
 class BaseInsight:
-    def __init__(self, metric_name, api, report_name, objective, unit, currency
-                 , id, validator_insight_type, **kwargs):
+    def __init__(self, metric_name=None, api=None, report_name=None
+                 , objective=None, unit=None, currency=None, id=None
+                 , validator_insight_type=None, metric_summary=None, **kwargs):
         self.check_api_value(api)
         self.metric_name = metric_name
         self.api = api
@@ -14,10 +15,12 @@ class BaseInsight:
         self.currency = currency
         self.id = id
         self.validator_insight_type = validator_insight_type
+        self.metrics = self.metric_summary_init(metric_summary)
 
     def check_api_value(self, api_val):
         if api_val not in [1, 2, 3, 4]:
-            raise Exception('Not sure, but something goes wrong!')
+            raise Exception(
+                f'Api value is:{api_val}! Expected values: [1, 2, 3, 4]')
 
     def __eq__(self, comparison_object):
         if isinstance(comparison_object, BaseInsight):
@@ -30,8 +33,6 @@ class BaseInsight:
             else:
                 return True
 
-    def metric_summary_init(self, **kwargs):
-        return MetricSummary(
-            self.metric_name, self.api, self.report_name, self.objective,
-            self.unit, self.currency, self.id, self.validator_insight_type
-            , **kwargs)
+    def metric_summary_init(self, metric_summary):
+        for summary_name, values in metric_summary.items():
+            return MetricSummary(metric_name=summary_name, **{**values})
