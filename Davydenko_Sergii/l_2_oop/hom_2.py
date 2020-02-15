@@ -1,9 +1,9 @@
 from BaseInsight import BaseInsight
 from hw_start import insights
-from Google import *
+from Google import GoogleInsight, FacebookInsight, TwitterInsight, SnapchatInsight
 
 
-def each_api(api):
+def search_change_api(api):
     return {
         1: FacebookInsight,
         2: GoogleInsight,
@@ -14,12 +14,12 @@ def each_api(api):
 
 for insight in insights:
     ap = insight['api'] if 'api' in insight else None
-    aps = each_api(ap)
+    aps = search_change_api(ap)
     print(f'{aps.__name__}', end=' ')
 
     try:
         apisnik = aps(**insight)
     except ValueError as error:
-        print(f"Error 1: {error}")
+        pass
     else:
         print(apisnik.__dict__)

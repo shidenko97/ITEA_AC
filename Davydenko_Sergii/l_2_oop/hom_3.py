@@ -1,10 +1,14 @@
 from hw_start import insights
-from Davydenko_Sergii.l_2_oop.BaseInsight import BaseInsight
 import copy
 
 
 def insight_builder(insights):
-    m_keys = ("metric_name", "api", "report_name", "objective", "unit", "currency", "id", "validator_insight_type")
+    # search only needed keys
+    # make copy of each Insight and create each insight
+    m_keys = (
+        "metric_name", "api", "report_name", "objective",
+        "unit", "currency", "id", "validator_insight_type"
+              )
     all_keys = {}
     cop = []
 
