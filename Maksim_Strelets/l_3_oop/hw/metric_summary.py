@@ -4,7 +4,7 @@ class MetricSummary:
                  is_outlier, true_sign, sign, mark, unit,
                  metric_name_frontend, mark_key, metric_name_frontend_key,
                  unit_key, **kwargs):
-        locals_dump = locals().copy()
+        locals_dump = locals().deepcopy()
         del locals_dump['self']
         del locals_dump['kwargs']
         for key in locals_dump:
@@ -13,10 +13,8 @@ class MetricSummary:
             setattr(self, key, locals_dump[key])
 
     def sum(self):
-        summ = 0
-        for key, val in self.__dict__.items():
-            try:
-                summ += val
-            except:
-                pass
-        return summ
+        return sum([
+            x
+            for x in self.__dict__.items()
+            if isinstance(x, int) or isinstance(x, float)
+        ])
