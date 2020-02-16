@@ -8,7 +8,7 @@ class UniqDict(dict):
             return
         super().__setitem__(key, value)
 
-    def __pop__(self):
+    def pop(self, obj):
         return
 
     def __delitem__(self, key):
@@ -29,7 +29,7 @@ class UniqDict2(UserDict):
 class IntList(list):
     def append(self, object) -> None:
         if object is not int:
-            raise TypeError
+            TypeError()
         super().append(object)
 
     def extend(self, iterable) -> None:
@@ -46,7 +46,7 @@ class IntList(list):
 class IntList2(UserList):
     def __setitem__(self, key, value):
         if value is not int:
-            raise KeyError
+            KeyError()
         super().__setitem__(key, value)
 
 

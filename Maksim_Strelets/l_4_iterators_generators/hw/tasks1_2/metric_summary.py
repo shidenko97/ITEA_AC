@@ -13,10 +13,8 @@ class MetricSummary:
             setattr(self, key, locals_dump[key])
 
     def sum(self):
-        summ = 0
-        for key, val in self.__dict__.items():
-            try:
-                summ += val
-            except:
-                pass
-        return summ
+        return sum([
+            val
+            for key, val in self.__dict__.items()
+            if isinstance(val, int) or isinstance(val, float)
+        ])

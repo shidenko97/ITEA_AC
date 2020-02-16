@@ -74,11 +74,11 @@ class BaseInsight(AbstractInsight, metaclass=MergedMetaInsight):
     # hw 3 task 2
     @timer
     def sum_metrics(self):
-        res = 0
-        for metr in self.metrics.values():
-            if metr.metric > 30:
-                res += metr.metric
-        return res
+        return sum([
+            metr
+            for metr in self.metrics.values()
+            if metr.metric > 30
+        ])
 
     def __len__(self):
         return len(self.metrics)
