@@ -3,6 +3,9 @@ import json
 import os
 
 
+show_condition = "all"
+
+
 # Parameters for parsing of each subtask
 TASKS_UTILS = [
     {
@@ -71,24 +74,27 @@ def get_count_of_insight(filename, breakdowns, task_params) -> tuple:
 
     for insight in task_params["open"](filename):
 
-        insights_len += 1
+        if show_condition in ["all", "without-breakdowns"]:
+            insights_len += 1
 
-        if "dimensions" not in insight:
-            return insights_len, insights_with_br_len
+        if show_condition in ["all", "breakdowns"]:
 
-        dimensions = insight["dimensions"]
+            if "dimensions" not in insight:
+                return insights_len, insights_with_br_len
 
-        if isinstance(dimensions, str):
-            dimensions = eval(dimensions)
+            dimensions = insight["dimensions"]
 
-        insights_with_br_len += int(
-            any(
-                filter(
-                    lambda dimension: task_params["filter"](dimension, breakdowns),
-                    dimensions
+            if isinstance(dimensions, str):
+                dimensions = eval(dimensions)
+
+            insights_with_br_len += int(
+                any(
+                    filter(
+                        lambda dimension: task_params["filter"](dimension, breakdowns),
+                        dimensions
+                    )
                 )
             )
-        )
 
     return insights_len, insights_with_br_len
 
