@@ -86,7 +86,7 @@ def get_count_of_insight(filename, breakdowns, task_params) -> tuple:
             dimensions = insight["dimensions"]
 
             if isinstance(dimensions, str):
-                dimensions = eval(dimensions)
+                dimensions = json.loads(dimensions.replace("'", "\""))
 
             insights_with_br_len += int(
                 any(
