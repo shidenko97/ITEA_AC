@@ -1,4 +1,4 @@
-from Serhii_Hidenko.l_5_modules.insights_preprocessing import baseinsight, task_1_from_3
+from Serhii_Hidenko.l_5_modules.insights_preprocessing import task_1_from_3
 from Serhii_Hidenko.source.hw_start import insights
 
 

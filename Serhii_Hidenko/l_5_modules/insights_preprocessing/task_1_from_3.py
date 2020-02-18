@@ -1,8 +1,8 @@
-from Serhii_Hidenko.l_3_oop.hw.baseinsight import BaseInsight
-from Serhii_Hidenko.l_3_oop.hw.facebookinsight import FacebookInsight
-from Serhii_Hidenko.l_3_oop.hw.googleinsight import GoogleInsight
-from Serhii_Hidenko.l_3_oop.hw.snapchatinsight import SnapchatInsight
-from Serhii_Hidenko.l_3_oop.hw.twitterinsight import TwitterInsight
+from Serhii_Hidenko.l_5_modules.insights_preprocessing.base_insight import BaseInsight
+from Serhii_Hidenko.l_5_modules.insights_preprocessing.facebook_insight import FacebookInsight
+from Serhii_Hidenko.l_5_modules.insights_preprocessing.google_insight import GoogleInsight
+from Serhii_Hidenko.l_5_modules.insights_preprocessing.snapchat_insight import SnapchatInsight
+from Serhii_Hidenko.l_5_modules.insights_preprocessing.twitter_insight import TwitterInsight
 from Serhii_Hidenko.source.hw_start import insights
 
 
