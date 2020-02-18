@@ -11,3 +11,10 @@ class MetricSummary:
             if key.startswith("__"):
                 continue
             setattr(self, key, locals_dump[key])
+
+    def sum(self):
+        return sum([
+            val
+            for key, val in self.__dict__.items()
+            if isinstance(val, int) or isinstance(val, float)
+        ])

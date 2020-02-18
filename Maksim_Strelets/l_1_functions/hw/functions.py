@@ -50,7 +50,10 @@ def dict_get(insights_list, name):
     for insight in insights_list:
         temp = elem_get(insight, name)
         if temp:
-            res += temp
+            if type(temp) is list:
+                res += temp
+            else:
+                res.append(temp)
 
     return res
 
@@ -151,4 +154,8 @@ def calc_by_formula(insights_list):
 
 def save(insights_list):
     with open('hw_out.json', 'w') as outfile:
+<<<<<<< HEAD
+        json.dump(dictionaries, outfile, ensure_ascii=False, indent=4)
+=======
         json.dump(insights_list, outfile, ensure_ascii=False, indent=4)
+>>>>>>> b60495f3b03ceb8c4c96362b65f55f212185da46

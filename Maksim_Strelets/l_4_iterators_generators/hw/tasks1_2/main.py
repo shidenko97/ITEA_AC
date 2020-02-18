@@ -1,4 +1,4 @@
-from Maksim_Strelets.l_2_oop.hw.network_dependent_insights import *
+from Maksim_Strelets.l_4_iterators_generators.hw.tasks1_2.network_dependent_insights import *
 from Yurii_Khomych.l_1_functions.hw_start import insights
 
 
@@ -20,5 +20,6 @@ def insight_builder(insight_list):
 
 
 a = insight_builder(insights)
+
 
 pass
