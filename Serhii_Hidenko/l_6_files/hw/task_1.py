@@ -164,9 +164,11 @@ def main():
 
             for task_params in TASKS_UTILS:
 
-                directory = task_params["filename"].\
-                    replace("{project_id}", str(project_id)).\
+                directory = (
+                    task_params["filename"].
+                    replace("{project_id}", str(project_id)).
                     replace("{project_execution}", str(project_execution))
+                )
 
                 insights_len, insights_with_br_len = get_directory_insight_len(
                     directory,
@@ -177,7 +179,7 @@ def main():
 
                 print(task_params["log_text"](
                     insights_len=insights_len,
-                    nsights_with_br_len=insights_with_br_len)
+                    insights_with_br_len=insights_with_br_len)
                 )
 
                 if output_file is not None:
@@ -189,8 +191,10 @@ def main():
 
                     for param in data_to_json.split("\n"):
 
-                        param = "{'" + param.replace(":", "': '").\
+                        param = (
+                            "{'" + param.replace(":", "': '").
                             replace(" ", "") + "'}"
+                        )
                         output_file_current_data.update(eval(param))
 
             if output_file is not None:
