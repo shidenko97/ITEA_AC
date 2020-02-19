@@ -1,9 +1,9 @@
 import logging
-from Serhii_Hidenko.l_5_modules.insights_preprocessing.base_insight import BaseInsight
-from Serhii_Hidenko.l_5_modules.insights_preprocessing.facebook_insight import FacebookInsight
-from Serhii_Hidenko.l_5_modules.insights_preprocessing.google_insight import GoogleInsight
-from Serhii_Hidenko.l_5_modules.insights_preprocessing.snapchat_insight import SnapchatInsight
-from Serhii_Hidenko.l_5_modules.insights_preprocessing.twitter_insight import TwitterInsight
+from Serhii_Hidenko.l_7_packages.hw.insights_preprocessing.base_insight import BaseInsight
+from Serhii_Hidenko.l_7_packages.hw.insights_preprocessing.facebook_insight import FacebookInsight
+from Serhii_Hidenko.l_7_packages.hw.insights_preprocessing.google_insight import GoogleInsight
+from Serhii_Hidenko.l_7_packages.hw.insights_preprocessing.snapchat_insight import SnapchatInsight
+from Serhii_Hidenko.l_7_packages.hw.insights_preprocessing.twitter_insight import TwitterInsight
 from Serhii_Hidenko.source.hw_start import insights
 
 
@@ -42,7 +42,7 @@ if __name__ == "__main__":
         insight_class = get_class_for_insight(api_value)
 
         try:
-            bi = insight_class(**insight)
+            bi = insight_class(**{**insight, **{"logger": logging}})
         except ValueError as err:
             logging.exception(f"Error: {err}")
         else:

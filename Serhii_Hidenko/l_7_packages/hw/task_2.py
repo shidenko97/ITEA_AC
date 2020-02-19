@@ -84,14 +84,20 @@ def insight_eq_fixture(request):
 
 def test_get_class_for_insight(api_param_fixture):
 
-    assert type(get_class_for_insight(api_param_fixture[0])) == type(api_param_fixture[1])
+    insight_class = api_param_fixture[0]
+    expected_class = api_param_fixture[1]
+
+    assert type(get_class_for_insight(insight_class)) == type(expected_class)
 
 
 def test_sum_of_insight_metrics(metrics_sum_fixture):
 
-    bi = BaseInsight(api=1, metric_summary=metrics_sum_fixture[0])
+    expected_sum = metrics_sum_fixture[0]
+    real_sum = metrics_sum_fixture[1]
 
-    assert metrics_sum_fixture[1] == bi.calculate_sum_of_all_metrics()
+    bi = BaseInsight(api=1, metric_summary=expected_sum)
+
+    assert real_sum == bi.calculate_sum_of_all_metrics()
 
 
 def test_get_insight_attribute():
@@ -109,4 +115,7 @@ def test_get_reportname_uppercase():
 
 def test_insight_eq(insight_eq_fixture):
 
-    assert BaseInsight(**insight_eq_fixture[0]) == insight_eq_fixture[1]
+    self_params = insight_eq_fixture[0]
+    other_params = insight_eq_fixture[1]
+
+    assert BaseInsight(**self_params) == other_params
