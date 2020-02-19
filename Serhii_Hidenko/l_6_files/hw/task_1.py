@@ -91,11 +91,49 @@ def get_count_of_insight(filename, breakdowns, task_params) -> tuple:
             insights_with_br_len += int(
                 any(
                     filter(
-                        lambda dimension: task_params["filter"](dimension, breakdowns),
+                        lambda dimension: task_params["filter"](dimension,
+                                                                breakdowns),
                         dimensions
                     )
                 )
             )
+
+    return insights_len, insights_with_br_len
+
+
+def get_directory_insight_len(
+        directory,
+        task_params,
+        project_execution,
+        breakdowns
+) -> tuple:
+    """
+    Return a length of insights in directory
+    :param directory: Directory for scan
+    :type directory: str
+    :param task_params: Parameters for the each task
+    :type task_params: dict
+    :param project_execution: Project execution id
+    :type project_execution: str
+    :param breakdowns: The breakdowns
+    :type breakdowns: list
+    :return: Full len and lenn with breakdowns
+    :rtype: tuple
+    """
+
+    insights_len = insights_with_br_len = 0
+
+    for file in get_directory_listing(
+        directory,
+        task_params["file_condition"](project_execution)
+    ):
+        insights = get_count_of_insight(
+            f"{directory}{file}",
+            breakdowns,
+            task_params
+        )
+        insights_len += insights[0]
+        insights_with_br_len += insights[1]
 
     return insights_len, insights_with_br_len
 
@@ -108,37 +146,51 @@ def main():
     parsed_json = json.load(open("hw_files/input_data.json"))
 
     breakdowns = parsed_json["breakdowns"]
-    project_id_to_project_execution = parsed_json["project_id_to_project_execution"]
+    proj_id_to_proj_exec = parsed_json["project_id_to_project_execution"]
 
-    for project_id, project_executions in project_id_to_project_execution.items():
+    for project_id, project_executions in proj_id_to_proj_exec.items():
 
         for project_execution in project_executions:
 
             if output_file is not None:
-                output_file_current_data = {"project_id": project_id, "project_execution_id": project_execution}
 
-            print(f"project_id: {project_id}, project_execution_id: {project_execution}")
+                output_file_current_data = {
+                    "project_id": project_id,
+                    "project_execution_id": project_execution
+                }
+
+            print(f"project_id: {project_id}, "
+                  f"project_execution_id: {project_execution}")
 
             for task_params in TASKS_UTILS:
 
-                directory = task_params["filename"].replace("{project_id}", str(project_id)).\
+                directory = task_params["filename"].\
+                    replace("{project_id}", str(project_id)).\
                     replace("{project_execution}", str(project_execution))
 
-                insights_len = insights_with_br_len = 0
+                insights_len, insights_with_br_len = get_directory_insight_len(
+                    directory,
+                    task_params,
+                    project_execution,
+                    breakdowns
+                )
 
-                for file in get_directory_listing(directory, task_params["file_condition"](project_execution)):
-
-                    insights = get_count_of_insight(f"{directory}{file}", breakdowns, task_params)
-                    insights_len += insights[0]
-                    insights_with_br_len += insights[1]
-
-                print(task_params["log_text"](insights_len=insights_len, insights_with_br_len=insights_with_br_len))
+                print(task_params["log_text"](
+                    insights_len=insights_len,
+                    nsights_with_br_len=insights_with_br_len)
+                )
 
                 if output_file is not None:
-                    data_to_json = task_params["log_text"](insights_len=insights_len,
-                                                           insights_with_br_len=insights_with_br_len)
+
+                    data_to_json = task_params["log_text"](
+                        insights_len=insights_len,
+                        insights_with_br_len=insights_with_br_len
+                    )
+
                     for param in data_to_json.split("\n"):
-                        param = "{'" + param.replace(":", "': '").replace(" ", "") + "'}"
+
+                        param = "{'" + param.replace(":", "': '").\
+                            replace(" ", "") + "'}"
                         output_file_current_data.update(eval(param))
 
             if output_file is not None:
