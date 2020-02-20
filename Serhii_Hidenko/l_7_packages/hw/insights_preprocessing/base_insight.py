@@ -1,3 +1,4 @@
+import logging
 from Serhii_Hidenko.l_4_iterators_generators.hw.metricsummary import MetricSummary
 
 
@@ -14,13 +15,13 @@ class BaseInsight:
             currency=None,
             validator_insight_type=None,
             metric_summary=None,
-            logger=None,
+            logger=logging,
             **kwargs
     ):
 
         self.logger = logger
 
-        self.print_log("Start __init__")
+        self.logger.info("Start __init__")
         self.api = api
 
         # Check is api a correctly
@@ -36,18 +37,13 @@ class BaseInsight:
 
         # Create dict of metrics
         self.metrics = self._create_metrics(metric_summary)
-        self.print_log("Finish __init__")
-
-    def print_log(self, msg=""):
-
-        if self.logger is not None:
-            self.logger.info(msg)
+        self.logger.info("Finish __init__")
 
     @property
     def currency(self):
         """Getter for `currency` attribute"""
 
-        self.print_log("Property currency")
+        self.logger.info("Property currency")
 
         return self.__currency
 
@@ -55,7 +51,7 @@ class BaseInsight:
     def unit(self):
         """Getter for `unit` attribute"""
 
-        self.print_log("Property unit")
+        self.logger.info("Property unit")
 
         return self.__unit
 
@@ -63,7 +59,7 @@ class BaseInsight:
     def print(self):
         """Getter for `print` attribute"""
 
-        self.print_log("Property print")
+        self.logger.info("Property print")
 
         return "print"
 
@@ -71,14 +67,14 @@ class BaseInsight:
     def api_name(self):
         """Get network name"""
 
-        self.print_log("Property api_name")
+        self.logger.info("Property api_name")
 
         return __class__.__name__.replace("Insight", "")
 
     def _check_api_is_correct(self):
         """Check is api attribute a valid value"""
 
-        self.print_log("Check is api correct")
+        self.logger.info("Check is api correct")
 
         valid_values = (1, 2, 3, 4)
 
@@ -88,7 +84,7 @@ class BaseInsight:
     def calculate_sum_of_all_metrics(self):
         """Calculate sum of all metrics instances"""
 
-        self.print_log("Calculate sums of metrics")
+        self.logger.info("Calculate sums of metrics")
 
         sum = 0
 
@@ -102,7 +98,7 @@ class BaseInsight:
     def get_attribute_by_name(self, name):
         """Getting attribute of class by name"""
 
-        self.print_log("Getting attribute by name")
+        self.logger.info("Getting attribute by name")
 
         try:
             return getattr(self, name)
@@ -112,14 +108,14 @@ class BaseInsight:
     def print_attribute_by_name(self, name):
         """Printing attribute of class by name"""
 
-        self.print_log("Printing attribute by name")
+        self.logger.info("Printing attribute by name")
 
         print(self.get_attribute_by_name(name))
 
     def get_report_name_uppercase(self):
         """Get `report_name` attribute in uppercase"""
 
-        self.print_log("Getting report name in upper case")
+        self.logger.info("Getting report name in upper case")
 
         return self.report_name.upper()
 
@@ -153,7 +149,7 @@ class BaseInsight:
         :rtype: bool
         """
 
-        self.print_log("Call __eq__")
+        self.logger.info("Call __eq__")
 
         if not isinstance(other, BaseInsight):
             return False
@@ -163,7 +159,7 @@ class BaseInsight:
     def __len__(self):
         """Re-declare __len__ magic method by len of metric attribute"""
 
-        self.print_log("Call __len__")
+        self.logger.info("Call __len__")
 
         return len(self.metrics)
 
@@ -193,20 +189,20 @@ class BaseInsight:
     def __getitem__(self, item):
         """Get metric of instance by key"""
 
-        self.print_log("Call __getitem__")
+        self.logger.info("Call __getitem__")
 
         return self.metrics[item]
 
     def __setitem__(self, key, value):
         """Set metric in instance by key"""
 
-        self.print_log("Call __setitem__")
+        self.logger.info("Call __setitem__")
 
         self.metrics[key] = value
 
     def __delitem__(self, key):
         """Del metric from instance by key"""
 
-        self.print_log("Call __delitem__")
+        self.logger.info("Call __delitem__")
 
         del self.metrics[key]
