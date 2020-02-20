@@ -9,7 +9,7 @@ class Dot(Graphic):
         self._y = y
 
     def draw(self):
-        pass
+        print(self)
 
     def move(self, x, y):
 

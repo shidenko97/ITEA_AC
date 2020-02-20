@@ -18,6 +18,5 @@ class ImageEditor:
 
         group = CompoundGraphic()
         group.add_component(components)
-        self.__components.remove_component(components)
         self.__components.add_component(group)
         self.__components.draw()
