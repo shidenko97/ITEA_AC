@@ -13,3 +13,4 @@ exclude =
     .venv,
     migrations,
     **/hw_start.py
+    YuriiKhomych/*
