@@ -20,7 +20,7 @@ if __name__ == "__main__":
         # Update data into table Categories
         db_conn.execute("""
             UPDATE
-                Categories  
+                Categories
             SET
                 CategoryName = 'Random category'
             WHERE
