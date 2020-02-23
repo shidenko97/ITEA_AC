@@ -2,10 +2,19 @@ from Serhii_Hidenko.source.hw_start import insights
 
 
 FORMULAS = {
-    1: lambda ins_period, **kwargs: (kwargs["sum"] * kwargs["sum_level"] / kwargs["sum_general"]) / ins_period,
-    2: lambda ins_period, **kwargs: (kwargs["sum"] * kwargs["sum_level"]**2 / kwargs["sum_general"]) / ins_period,
-    3: lambda ins_period, **kwargs: (kwargs["sum_level"] / kwargs["sum_general"]) / ins_period,
-    4: lambda ins_period, **kwargs: (kwargs["sum_level"] * 100) / ins_period
+    1: lambda ins_period, **kwargs: (
+        kwargs["sum"] * kwargs["sum_level"] / kwargs["sum_general"]
+    )
+    / ins_period,
+    2: lambda ins_period, **kwargs: (
+        kwargs["sum"] * kwargs["sum_level"] ** 2 / kwargs["sum_general"]
+    )
+    / ins_period,
+    3: lambda ins_period, **kwargs: (
+        kwargs["sum_level"] / kwargs["sum_general"]
+    )
+    / ins_period,
+    4: lambda ins_period, **kwargs: (kwargs["sum_level"] * 100) / ins_period,
 }
 
 
@@ -17,8 +26,12 @@ if __name__ == "__main__":
             continue
 
         # Set period by formula
-        period = 7 if (isinstance(insight["period"], int) and insight["period"] > 4) or insight["period"] is None else \
-            insight["period"]
+        period = (
+            7
+            if (isinstance(insight["period"], int) and insight["period"] > 4)
+            or insight["period"] is None
+            else insight["period"]
+        )
 
         for metric_sum in insight["metric_sums"]:
 
@@ -30,14 +43,16 @@ if __name__ == "__main__":
             except ZeroDivisionError:
                 metric_sum["summary"] = 0
 
-            print({
-                "period": period,
-                "api": insight["api"],
-                "sum": metric_sum["sum"],
-                "sum_level": metric_sum["sum_level"],
-                "sum_general": metric_sum["sum_general"],
-                "summary": metric_sum["summary"]
-            })
+            print(
+                {
+                    "period": period,
+                    "api": insight["api"],
+                    "sum": metric_sum["sum"],
+                    "sum_level": metric_sum["sum_level"],
+                    "sum_general": metric_sum["sum_general"],
+                    "summary": metric_sum["summary"],
+                }
+            )
 
     list_of_entities = []
 
@@ -46,6 +61,9 @@ if __name__ == "__main__":
         if "entities_affected" not in insight:
             continue
 
-        list_of_entities += filter(lambda entity: entity["spend_sum"] > 200, insight["entities_affected"]["entities"])
+        list_of_entities += filter(
+            lambda entity: entity["spend_sum"] > 200,
+            insight["entities_affected"]["entities"],
+        )
 
     print(list_of_entities)

@@ -1,4 +1,3 @@
-
 a_set = {1, 2, 3}
 b_iterator = iter(a_set)
 next(b_iterator)

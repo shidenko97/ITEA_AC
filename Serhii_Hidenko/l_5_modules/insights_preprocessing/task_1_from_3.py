@@ -1,8 +1,18 @@
-from Serhii_Hidenko.l_5_modules.insights_preprocessing.base_insight import BaseInsight
-from Serhii_Hidenko.l_5_modules.insights_preprocessing.facebook_insight import FacebookInsight
-from Serhii_Hidenko.l_5_modules.insights_preprocessing.google_insight import GoogleInsight
-from Serhii_Hidenko.l_5_modules.insights_preprocessing.snapchat_insight import SnapchatInsight
-from Serhii_Hidenko.l_5_modules.insights_preprocessing.twitter_insight import TwitterInsight
+from Serhii_Hidenko.l_5_modules.insights_preprocessing.base_insight import (
+    BaseInsight,
+)
+from Serhii_Hidenko.l_5_modules.insights_preprocessing.facebook_insight import (
+    FacebookInsight,
+)
+from Serhii_Hidenko.l_5_modules.insights_preprocessing.google_insight import (
+    GoogleInsight,
+)
+from Serhii_Hidenko.l_5_modules.insights_preprocessing.snapchat_insight import (
+    SnapchatInsight,
+)
+from Serhii_Hidenko.l_5_modules.insights_preprocessing.twitter_insight import (
+    TwitterInsight,
+)
 from Serhii_Hidenko.source.hw_start import insights
 
 
@@ -19,7 +29,7 @@ def get_class_for_insight(api=None) -> BaseInsight:
         1: FacebookInsight,
         2: GoogleInsight,
         3: TwitterInsight,
-        4: SnapchatInsight
+        4: SnapchatInsight,
     }.get(api, BaseInsight)
 
 

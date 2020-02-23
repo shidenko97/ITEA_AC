@@ -11,7 +11,7 @@ def remove_keys(insights):
         copy_insights = insights.copy()
         for key, value in insights.items():
             if key in UNIT_KEYS:
-                if value != 'EUR':
+                if value != "EUR":
                     del copy_insights[key]
 
             else:

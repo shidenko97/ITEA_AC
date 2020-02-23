@@ -83,5 +83,5 @@ def main():
         print_person(final_transformed)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

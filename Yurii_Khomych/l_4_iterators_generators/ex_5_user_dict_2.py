@@ -15,6 +15,7 @@ class TwoWayDict(UserDict):
         self.data[key] = value
         self.data[value] = key
 
+
 d = TwoWayDict()
 d[3] = 7
 del d[7]

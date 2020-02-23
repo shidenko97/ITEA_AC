@@ -9,7 +9,9 @@ if __name__ == "__main__":
     for insight in insights:
 
         try:
-            instance_class = task_1_from_3.get_class_for_insight(insight.get("api", None))
+            instance_class = task_1_from_3.get_class_for_insight(
+                insight.get("api", None)
+            )
             bi = instance_class(**insight)
             insights_networks_list.append(bi)
         except ValueError as err:

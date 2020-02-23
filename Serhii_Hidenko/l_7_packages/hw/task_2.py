@@ -1,65 +1,49 @@
 import pytest
 from Serhii_Hidenko.l_7_packages.hw.task_1 import get_class_for_insight
-from Serhii_Hidenko.l_7_packages.hw.insights_preprocessing.base_insight import BaseInsight
-from Serhii_Hidenko.l_7_packages.hw.insights_preprocessing.facebook_insight import FacebookInsight
-from Serhii_Hidenko.l_7_packages.hw.insights_preprocessing.google_insight import GoogleInsight
-from Serhii_Hidenko.l_7_packages.hw.insights_preprocessing.twitter_insight import TwitterInsight
-from Serhii_Hidenko.l_7_packages.hw.insights_preprocessing.snapchat_insight import SnapchatInsight
+from Serhii_Hidenko.l_7_packages.hw.insights_preprocessing.base_insight import (
+    BaseInsight,
+)
+from Serhii_Hidenko.l_7_packages.hw.insights_preprocessing.facebook_insight import (
+    FacebookInsight,
+)
+from Serhii_Hidenko.l_7_packages.hw.insights_preprocessing.google_insight import (
+    GoogleInsight,
+)
+from Serhii_Hidenko.l_7_packages.hw.insights_preprocessing.twitter_insight import (
+    TwitterInsight,
+)
+from Serhii_Hidenko.l_7_packages.hw.insights_preprocessing.snapchat_insight import (
+    SnapchatInsight,
+)
 
 
 PARAMS_FOR_API_TESTING = [-1, 0, 1, 2, 3, 4, 5, "", None, True]
 PARAMS_FOR_SUM_METRICS_TESTING = [
-    {"test1": {
-        "metric": 31,
-        "metric_level": 88,
-        "metric_average": -5,
-    }},
-    {"test2": {
-        "metric": 30,
-        "metric_level": 1,
-        "metric_average": 0,
-    }},
-    {"test3": {
-        "metric": 31,
-        "metric_average": 8,
-    }},
-    {"test4": {
-        "metric": 99,
-    }},
-    {"test5": {
-        "metric": 99,
-        "metric_level": 999,
-        "metric_average": 9999,
-    }},
+    {"test1": {"metric": 31, "metric_level": 88, "metric_average": -5,}},
+    {"test2": {"metric": 30, "metric_level": 1, "metric_average": 0,}},
+    {"test3": {"metric": 31, "metric_average": 8,}},
+    {"test4": {"metric": 99,}},
+    {"test5": {"metric": 99, "metric_level": 999, "metric_average": 9999,}},
 ]
 PARAMS_EQ_PARAMS = [
-    {
-        "api": 1,
-        "objective": "gg",
-        "id": 14
-    },
-    {
-        "api": 2,
-        "objective": "test",
-        "id": 5432
-    },
-    {
-        "api": 3,
-        "objective": "",
-        "id": "235"
-    },
+    {"api": 1, "objective": "gg", "id": 14},
+    {"api": 2, "objective": "test", "id": 5432},
+    {"api": 3, "objective": "", "id": "235"},
 ]
 
 
 @pytest.fixture(params=PARAMS_FOR_API_TESTING)
 def api_param_fixture(request):
 
-    return request.param, {
-        1: FacebookInsight,
-        2: GoogleInsight,
-        3: TwitterInsight,
-        4: SnapchatInsight
-    }.get(request.param, BaseInsight)
+    return (
+        request.param,
+        {
+            1: FacebookInsight,
+            2: GoogleInsight,
+            3: TwitterInsight,
+            4: SnapchatInsight,
+        }.get(request.param, BaseInsight),
+    )
 
 
 @pytest.fixture(params=PARAMS_FOR_SUM_METRICS_TESTING)

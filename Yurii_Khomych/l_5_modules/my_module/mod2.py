@@ -5,4 +5,5 @@ import pytest
 def bar(arg):
     print(f"bar = {arg}")
 
+
 pass

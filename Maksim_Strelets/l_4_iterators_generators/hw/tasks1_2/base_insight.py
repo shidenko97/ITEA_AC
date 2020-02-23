@@ -1,7 +1,9 @@
 import functools
 import time
 from functools import total_ordering
-from Maksim_Strelets.l_4_iterators_generators.hw.tasks1_2.metric_summary import MetricSummary
+from Maksim_Strelets.l_4_iterators_generators.hw.tasks1_2.metric_summary import (
+    MetricSummary,
+)
 from Maksim_Strelets.l_4_iterators_generators.hw.tasks1_2.abstract_insight import *
 
 
@@ -25,9 +27,18 @@ def timer(func):
 
 @total_ordering
 class BaseInsight(AbstractInsight, metaclass=MergedMetaInsight):
-    def __init__(self, metric_name=None, api=None, report_name=None,
-                 objective=None, unit=None, currency=None, id=None,
-                 validator_insight_type=None, **kwargs):
+    def __init__(
+        self,
+        metric_name=None,
+        api=None,
+        report_name=None,
+        objective=None,
+        unit=None,
+        currency=None,
+        id=None,
+        validator_insight_type=None,
+        **kwargs,
+    ):
         self.api = api
         self.check_api()
 
@@ -74,11 +85,9 @@ class BaseInsight(AbstractInsight, metaclass=MergedMetaInsight):
     # hw 3 task 2
     @timer
     def sum_metrics(self):
-        return sum([
-            metr
-            for metr in self.metrics.values()
-            if metr.metric > 30
-        ])
+        return sum(
+            [metr for metr in self.metrics.values() if metr.metric > 30]
+        )
 
     def __len__(self):
         return len(self.metrics)

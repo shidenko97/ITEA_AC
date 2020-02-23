@@ -17,9 +17,9 @@ class TestSum(unittest.TestCase):
     #     """
     #     Test that it can sum a list of fractions
     #     """
-        # data = [Fraction(1, 4), Fraction(1, 4), Fraction(2, 5)]
-        # result = my_sum_func(data)
-        # self.assertEqual(1, result)
+    # data = [Fraction(1, 4), Fraction(1, 4), Fraction(2, 5)]
+    # result = my_sum_func(data)
+    # self.assertEqual(1, result)
 
     # def test_func_false(self):
     #     res = func_false()

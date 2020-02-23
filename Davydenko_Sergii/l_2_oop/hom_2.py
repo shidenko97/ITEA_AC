@@ -1,6 +1,11 @@
 from BaseInsight import BaseInsight
 from hw_start import insights
-from Google import GoogleInsight, FacebookInsight, TwitterInsight, SnapchatInsight
+from Google import (
+    GoogleInsight,
+    FacebookInsight,
+    TwitterInsight,
+    SnapchatInsight,
+)
 
 
 def search_change_api(api):
@@ -13,9 +18,9 @@ def search_change_api(api):
 
 
 for insight in insights:
-    ap = insight['api'] if 'api' in insight else None
+    ap = insight["api"] if "api" in insight else None
     aps = search_change_api(ap)
-    print(f'{aps.__name__}', end=' ')
+    print(f"{aps.__name__}", end=" ")
 
     try:
         apisnik = aps(**insight)

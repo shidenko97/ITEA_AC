@@ -3,7 +3,7 @@ class Car:
     __software_version = 1
 
     def __init__(self):
-        self.__tires_diameter = 15 # Tires
+        self.__tires_diameter = 15  # Tires
 
     def drive(self):
         print("driving")
@@ -55,5 +55,3 @@ tesla_car.tires_diameter
 tesla_car.tires_diameter = 21
 del tesla_car.tires_diameter
 tesla_car.tires_diameter
-
-

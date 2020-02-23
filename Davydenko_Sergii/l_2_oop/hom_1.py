@@ -10,5 +10,3 @@ for insight in insights:
         print(f"Error: {error}")
     else:
         print(apisnik.__dict__)
-
-

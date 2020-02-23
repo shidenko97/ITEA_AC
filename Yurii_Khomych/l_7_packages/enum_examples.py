@@ -9,6 +9,7 @@ class Animal(Enum):
     cat = 3
     dog = 4
 
+
 ANIMAL = {
     "ant": 1,
     "bee": 2,
