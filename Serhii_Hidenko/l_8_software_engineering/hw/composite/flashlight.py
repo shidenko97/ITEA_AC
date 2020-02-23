@@ -1,8 +1,9 @@
-from Serhii_Hidenko.l_8_software_engineering.hw.composite.object_with_status import ObjectWithStatus
+from Serhii_Hidenko.l_8_software_engineering.hw.composite.object_with_status import (
+    ObjectWithStatus,
+)
 
 
 class Flashlight(ObjectWithStatus):
-
     def __init__(self):
 
         self.__is_on = False

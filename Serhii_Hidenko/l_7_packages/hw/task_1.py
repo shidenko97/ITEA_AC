@@ -1,9 +1,19 @@
 import logging
-from Serhii_Hidenko.l_7_packages.hw.insights_preprocessing.base_insight import BaseInsight
-from Serhii_Hidenko.l_7_packages.hw.insights_preprocessing.facebook_insight import FacebookInsight
-from Serhii_Hidenko.l_7_packages.hw.insights_preprocessing.google_insight import GoogleInsight
-from Serhii_Hidenko.l_7_packages.hw.insights_preprocessing.snapchat_insight import SnapchatInsight
-from Serhii_Hidenko.l_7_packages.hw.insights_preprocessing.twitter_insight import TwitterInsight
+from Serhii_Hidenko.l_7_packages.hw.insights_preprocessing.base_insight import (
+    BaseInsight,
+)
+from Serhii_Hidenko.l_7_packages.hw.insights_preprocessing.facebook_insight import (
+    FacebookInsight,
+)
+from Serhii_Hidenko.l_7_packages.hw.insights_preprocessing.google_insight import (
+    GoogleInsight,
+)
+from Serhii_Hidenko.l_7_packages.hw.insights_preprocessing.snapchat_insight import (
+    SnapchatInsight,
+)
+from Serhii_Hidenko.l_7_packages.hw.insights_preprocessing.twitter_insight import (
+    TwitterInsight,
+)
 from Serhii_Hidenko.source.hw_start import insights
 
 
@@ -20,14 +30,16 @@ def get_class_for_insight(api=None) -> BaseInsight:
         1: FacebookInsight,
         2: GoogleInsight,
         3: TwitterInsight,
-        4: SnapchatInsight
+        4: SnapchatInsight,
     }.get(api, BaseInsight)
 
 
 if __name__ == "__main__":
 
     logging.basicConfig(
-        format="%(asctime)s - %(message)s", datefmt="%Y-%m-%d %H:%M:%S", level=logging.DEBUG
+        format="%(asctime)s - %(message)s",
+        datefmt="%Y-%m-%d %H:%M:%S",
+        level=logging.DEBUG,
     )
 
     for insight in insights:

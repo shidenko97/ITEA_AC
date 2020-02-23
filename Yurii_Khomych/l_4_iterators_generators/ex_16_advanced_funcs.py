@@ -10,7 +10,7 @@ filter_gen = (x for x in [1, 3, 10, 45, 6, 50] if x % 2 != 0)
 
 
 map_res = map(lambda x: x + x, [1, 3, 10, 45, 6, 50])
-list(map(lambda x, y: x + y, [1, 3, 10, 45, 6, 50], [1,2,3,4, 5, 50]))
+list(map(lambda x, y: x + y, [1, 3, 10, 45, 6, 50], [1, 2, 3, 4, 5, 50]))
 
 my_list = [1, 2, 3, 4, 5]
 reduce_res = reduce(lambda x, y: x * y, [1, 2, 3, 4, 5])

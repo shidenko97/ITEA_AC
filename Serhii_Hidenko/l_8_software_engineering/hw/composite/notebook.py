@@ -1,4 +1,6 @@
-from Serhii_Hidenko.l_8_software_engineering.hw.composite.object_with_status import ObjectWithStatus
+from Serhii_Hidenko.l_8_software_engineering.hw.composite.object_with_status import (
+    ObjectWithStatus,
+)
 
 
 class Notebook(ObjectWithStatus):

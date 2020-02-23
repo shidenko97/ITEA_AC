@@ -1,7 +1,11 @@
 from Serhii_Hidenko.l_8_software_engineering.hw.composite.dot import Dot
 from Serhii_Hidenko.l_8_software_engineering.hw.composite.circle import Circle
-from Serhii_Hidenko.l_8_software_engineering.hw.composite.compound_graphic import CompoundGraphic
-from Serhii_Hidenko.l_8_software_engineering.hw.composite.image_editor import ImageEditor
+from Serhii_Hidenko.l_8_software_engineering.hw.composite.compound_graphic import (
+    CompoundGraphic,
+)
+from Serhii_Hidenko.l_8_software_engineering.hw.composite.image_editor import (
+    ImageEditor,
+)
 
 
 if __name__ == "__main__":

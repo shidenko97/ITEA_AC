@@ -1,5 +1,7 @@
 from abc import ABC, abstractmethod, ABCMeta
-from Maksim_Strelets.l_4_iterators_generators.hw.tasks1_2.meta_insight import MetaInsight
+from Maksim_Strelets.l_4_iterators_generators.hw.tasks1_2.meta_insight import (
+    MetaInsight,
+)
 
 
 class MergedMetaInsight(MetaInsight, ABCMeta):

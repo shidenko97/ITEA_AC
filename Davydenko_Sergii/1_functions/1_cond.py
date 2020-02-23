@@ -1,5 +1,6 @@
 from hw_start import insights
 from Remove_unused import ROOT_KEYS, ENTITI_KEYS_TO_DEL
+
 # Done
 
 
@@ -23,7 +24,7 @@ all_in(insights)
 def in_ent_aff(entitie_lvl):
     entitie_lvl_c = entitie_lvl.copy()
     for key, value in entitie_lvl_c.items():
-        if key == 'entities':
+        if key == "entities":
             for point in ENTITI_KEYS_TO_DEL:
                 for keys in value:
                     if point in keys:
@@ -34,7 +35,7 @@ def in_ent_aff(entitie_lvl):
 def all_in(insights):
     if isinstance(insights, dict):
         for key, value in insights.items():
-            if key == 'entities_affected':
+            if key == "entities_affected":
                 in_ent_aff(value)
             else:
                 all_in(value)

@@ -1,8 +1,9 @@
-from Serhii_Hidenko.l_8_software_engineering.hw.composite.graphic import Graphic
+from Serhii_Hidenko.l_8_software_engineering.hw.composite.graphic import (
+    Graphic,
+)
 
 
 class CompoundGraphic(Graphic):
-
     def __init__(self):
 
         self.__childrens = []

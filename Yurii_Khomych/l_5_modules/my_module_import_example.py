@@ -26,6 +26,7 @@
 # from my_module import *
 # from my_module import A
 from my_module.mod1.mod2.mod3.mod4 import foo
+
 pass
 #
 # pass

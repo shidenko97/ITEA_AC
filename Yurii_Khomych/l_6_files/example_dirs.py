@@ -1,6 +1,7 @@
 # from datetime import datetime
 import os
 from os import scandir
+
 #
 # def convert_date(timestamp):
 #     d = datetime.utcfromtimestamp(timestamp)
@@ -16,12 +17,14 @@ from os import scandir
 #
 # get_files()
 
-def rename_filenames(path='hw_files/'):
+
+def rename_filenames(path="hw_files/"):
     dir_entries = os.scandir(path)
     for entry in dir_entries:
         if entry.is_dir():
             rename_filenames(path=entry.path)
         elif " _ " in entry.name:
-            os.rename(entry.path, entry.path.replace(" _ ", '_'))
+            os.rename(entry.path, entry.path.replace(" _ ", "_"))
+
 
 rename_filenames()

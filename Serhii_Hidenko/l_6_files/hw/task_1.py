@@ -11,28 +11,37 @@ output_file = None
 TASKS_UTILS = [
     {
         "filename": "hw_files/analyzer/project_id-{project_id}/project_execution-{project_execution}"
-                    "/2-function_name-generate_nb_insights/",
-        "file_condition": lambda project_execution: lambda file: file.endswith('-1.json'),
+        "/2-function_name-generate_nb_insights/",
+        "file_condition": lambda project_execution: lambda file: file.endswith(
+            "-1.json"
+        ),
         "open": lambda name: json.load(open(name)),
-        "filter": lambda dimension, breakdowns: dimension["name"].replace("dimension:", "") in breakdowns,
+        "filter": lambda dimension, breakdowns: dimension["name"].replace(
+            "dimension:", ""
+        )
+        in breakdowns,
         "log_text": lambda **kwargs: f"analyzer_insights_len: {kwargs['insights_len']}\n"
-                                     f"analyzer_insights_with_br_len: {kwargs['insights_with_br_len']}"
+        f"analyzer_insights_with_br_len: {kwargs['insights_with_br_len']}",
     },
     {
         "filename": "hw_files/mid/",
-        "file_condition": lambda project_execution: lambda file: file.startswith(f"{project_execution}"),
+        "file_condition": lambda project_execution: lambda file: file.startswith(
+            f"{project_execution}"
+        ),
         "open": lambda name: csv.DictReader(open(name)),
         "filter": lambda dimension, breakdowns: dimension in breakdowns,
         "log_text": lambda **kwargs: f"mid_insights_len: {kwargs['insights_len']}\n"
-                                     f"mid_insights_with_br_len: {kwargs['insights_with_br_len']}"
+        f"mid_insights_with_br_len: {kwargs['insights_with_br_len']}",
     },
     {
         "filename": "hw_files/final_results/",
-        "file_condition": lambda project_execution: lambda file: file == f"cc_pp_{project_execution}.json",
+        "file_condition": lambda project_execution: lambda file: file
+        == f"cc_pp_{project_execution}.json",
         "open": lambda name: json.load(open(name)),
-        "filter": lambda dimension, breakdowns: dimension["name"] in breakdowns,
+        "filter": lambda dimension, breakdowns: dimension["name"]
+        in breakdowns,
         "log_text": lambda **kwargs: f"final_insights_len: {kwargs['insights_len']}\n"
-                                     f"final_insights_with_br_len: {kwargs['insights_with_br_len']}"
+        f"final_insights_with_br_len: {kwargs['insights_with_br_len']}",
     },
 ]
 
@@ -86,14 +95,15 @@ def get_count_of_insight(filename, breakdowns, task_params) -> tuple:
             dimensions = insight["dimensions"]
 
             if isinstance(dimensions, str):
-                dimensions = json.loads(dimensions.replace("'", "\""))
+                dimensions = json.loads(dimensions.replace("'", '"'))
 
             insights_with_br_len += int(
                 any(
                     filter(
-                        lambda dimension: task_params["filter"](dimension,
-                                                                breakdowns),
-                        dimensions
+                        lambda dimension: task_params["filter"](
+                            dimension, breakdowns
+                        ),
+                        dimensions,
                     )
                 )
             )
@@ -102,10 +112,7 @@ def get_count_of_insight(filename, breakdowns, task_params) -> tuple:
 
 
 def get_directory_insight_len(
-        directory,
-        task_params,
-        project_execution,
-        breakdowns
+    directory, task_params, project_execution, breakdowns
 ) -> tuple:
     """
     Return a length of insights in directory
@@ -124,13 +131,10 @@ def get_directory_insight_len(
     insights_len = insights_with_br_len = 0
 
     for file in get_directory_listing(
-        directory,
-        task_params["file_condition"](project_execution)
+        directory, task_params["file_condition"](project_execution)
     ):
         insights = get_count_of_insight(
-            f"{directory}{file}",
-            breakdowns,
-            task_params
+            f"{directory}{file}", breakdowns, task_params
         )
         insights_len += insights[0]
         insights_with_br_len += insights[1]
@@ -156,44 +160,46 @@ def main():
 
                 output_file_current_data = {
                     "project_id": project_id,
-                    "project_execution_id": project_execution
+                    "project_execution_id": project_execution,
                 }
 
-            print(f"project_id: {project_id}, "
-                  f"project_execution_id: {project_execution}")
+            print(
+                f"project_id: {project_id}, "
+                f"project_execution_id: {project_execution}"
+            )
 
             for task_params in TASKS_UTILS:
 
                 directory = (
-                    task_params["filename"].
-                    replace("{project_id}", str(project_id)).
-                    replace("{project_execution}", str(project_execution))
+                    task_params["filename"]
+                    .replace("{project_id}", str(project_id))
+                    .replace("{project_execution}", str(project_execution))
                 )
 
                 insights_len, insights_with_br_len = get_directory_insight_len(
-                    directory,
-                    task_params,
-                    project_execution,
-                    breakdowns
+                    directory, task_params, project_execution, breakdowns
                 )
 
-                print(task_params["log_text"](
-                    insights_len=insights_len,
-                    insights_with_br_len=insights_with_br_len)
+                print(
+                    task_params["log_text"](
+                        insights_len=insights_len,
+                        insights_with_br_len=insights_with_br_len,
+                    )
                 )
 
                 if output_file is not None:
 
                     data_to_json = task_params["log_text"](
                         insights_len=insights_len,
-                        insights_with_br_len=insights_with_br_len
+                        insights_with_br_len=insights_with_br_len,
                     )
 
                     for param in data_to_json.split("\n"):
 
                         param = (
-                            "{'" + param.replace(":", "': '").
-                            replace(" ", "") + "'}"
+                            "{'"
+                            + param.replace(":", "': '").replace(" ", "")
+                            + "'}"
                         )
                         output_file_current_data.update(eval(param))
 

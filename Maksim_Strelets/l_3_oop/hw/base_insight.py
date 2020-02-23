@@ -25,9 +25,18 @@ def timer(func):
 
 @total_ordering
 class BaseInsight(AbstractInsight, metaclass=MergedMetaInsight):
-    def __init__(self, metric_name=None, api=None, report_name=None,
-                 objective=None, unit=None, currency=None, id=None,
-                 validator_insight_type=None, **kwargs):
+    def __init__(
+        self,
+        metric_name=None,
+        api=None,
+        report_name=None,
+        objective=None,
+        unit=None,
+        currency=None,
+        id=None,
+        validator_insight_type=None,
+        **kwargs,
+    ):
         self.api = api
         self.check_api()
 
@@ -100,5 +109,3 @@ class BaseInsight(AbstractInsight, metaclass=MergedMetaInsight):
 
     def upper_report_name(self):
         return self.report_name.upper()
-
-

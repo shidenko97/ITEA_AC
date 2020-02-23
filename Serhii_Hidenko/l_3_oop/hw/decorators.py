@@ -2,11 +2,12 @@ import functools
 import time
 
 
-def execution_time_and_result_decorator(func=None, *, filename="functions_executions.txt"):
+def execution_time_and_result_decorator(
+    func=None, *, filename="functions_executions.txt"
+):
     """Decorator for writing to file functions execution time and results"""
 
     def outer_wrapper(func):
-
         @functools.wraps(func)
         def wrapper(*args, **kwargs):
 
@@ -15,7 +16,9 @@ def execution_time_and_result_decorator(func=None, *, filename="functions_execut
             runtime = time.time() - time_start
 
             with open(filename, "a") as file:
-                file.write(f"function {func.__name__}\n\texecution time: {runtime} seconds\n\tresult: {func_return}\n")
+                file.write(
+                    f"function {func.__name__}\n\texecution time: {runtime} seconds\n\tresult: {func_return}\n"
+                )
 
             return func_return
 

@@ -1,8 +1,15 @@
 from Yurii_Khomych.l_1_functions.hw_start import insights
 from Maksim_Strelets.l_1_functions.hw.functions import *
 
-removable = ["period", "count", "total_count", "page_id", "entities_affected.entities.link",
-             "entities_affected.entities.status", "entities_affected.entities.days_in_data"]
+removable = [
+    "period",
+    "count",
+    "total_count",
+    "page_id",
+    "entities_affected.entities.link",
+    "entities_affected.entities.status",
+    "entities_affected.entities.days_in_data",
+]
 
 # task 1
 # for el in removable:

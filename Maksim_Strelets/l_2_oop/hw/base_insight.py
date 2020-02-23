@@ -4,9 +4,18 @@ from Maksim_Strelets.l_2_oop.hw.metric_summary import MetricSummary
 
 @total_ordering
 class BaseInsight:
-    def __init__(self, metric_name=None, api=None, report_name=None,
-                 objective=None, unit=None, currency=None, id=None,
-                 validator_insight_type=None, **kwargs):
+    def __init__(
+        self,
+        metric_name=None,
+        api=None,
+        report_name=None,
+        objective=None,
+        unit=None,
+        currency=None,
+        id=None,
+        validator_insight_type=None,
+        **kwargs
+    ):
         self.api = api
         self.check_api()
 

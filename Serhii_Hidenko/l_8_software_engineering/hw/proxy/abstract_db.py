@@ -2,7 +2,6 @@ from abc import ABCMeta, abstractmethod
 
 
 class AbstractDb(metaclass=ABCMeta):
-
     @abstractmethod
     def execute_query(self, query, params=None):
         pass
