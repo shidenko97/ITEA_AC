@@ -19,11 +19,11 @@ from Serhii_Hidenko.l_7_packages.hw.insights_preprocessing.snapchat_insight impo
 
 PARAMS_FOR_API_TESTING = [-1, 0, 1, 2, 3, 4, 5, "", None, True]
 PARAMS_FOR_SUM_METRICS_TESTING = [
-    {"test1": {"metric": 31, "metric_level": 88, "metric_average": -5,}},
-    {"test2": {"metric": 30, "metric_level": 1, "metric_average": 0,}},
-    {"test3": {"metric": 31, "metric_average": 8,}},
-    {"test4": {"metric": 99,}},
-    {"test5": {"metric": 99, "metric_level": 999, "metric_average": 9999,}},
+    {"test1": {"metric": 31, "metric_level": 88, "metric_average": -5}},
+    {"test2": {"metric": 30, "metric_level": 1, "metric_average": 0}},
+    {"test3": {"metric": 31, "metric_average": 8}},
+    {"test4": {"metric": 99}},
+    {"test5": {"metric": 99, "metric_level": 999, "metric_average": 9999}},
 ]
 PARAMS_EQ_PARAMS = [
     {"api": 1, "objective": "gg", "id": 14},
