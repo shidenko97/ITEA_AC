@@ -10,7 +10,7 @@ if __name__ == "__main__":
         db_conn.execute("""
             UPDATE
                 Customers
-            SET 
+            SET
                 CustomerName = 'Random customer',
                 ContactName = 'Random contact'
             WHERE
@@ -20,8 +20,8 @@ if __name__ == "__main__":
         # Update data into table Categories
         db_conn.execute("""
             UPDATE
-                Categories   
-            SET 
+                Categories  
+            SET
                 CategoryName = 'Random category'
             WHERE
                 CategoryID != 2
@@ -44,7 +44,7 @@ if __name__ == "__main__":
             SET
                 ShipperName = 'Random shipper'
             WHERE
-                ShipperID != 1    
+                ShipperID != 1
         """)
 
         # Update data into table Suppliers
@@ -82,5 +82,5 @@ if __name__ == "__main__":
             UPDATE
                 OrderDetails
             SET
-                Quantity = 33        
+                Quantity = 33
         """)

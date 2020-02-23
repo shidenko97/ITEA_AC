@@ -9,12 +9,12 @@ if __name__ == "__main__":
         # Create database
         db_conn.execute(f"""
             SELECT
-                'CREATE DATABASE {DB_NAME}' 
-            WHERE 
+                'CREATE DATABASE {DB_NAME}'
+            WHERE
                 NOT EXISTS (
-                    SELECT FROM 
-                        pg_database 
-                    WHERE 
+                    SELECT FROM
+                        pg_database
+                    WHERE
                         pg_database.datname = '{DB_NAME}'
                 );
         """)

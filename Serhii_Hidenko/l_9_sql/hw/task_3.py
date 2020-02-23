@@ -15,28 +15,28 @@ if __name__ == "__main__":
                     Address,
                     City,
                     PostalCode,
-                    Country    
+                    Country
                 ) VALUES (
                     'Customer 1',
                     'Contact 1',
                     'Address 1',
                     'City 1',
                     'Postal 1',
-                    'Country 1'        
+                    'Country 1'
                 ), (
                     'Customer 2',
                     'Contact 2',
                     'Address 2',
                     'City 2',
                     'Postal 2',
-                    'Country 2'        
+                    'Country 2'
                 ), (
                     'Customer 3',
                     'Contact 3',
                     'Address 3',
                     'City 3',
                     'Postal 3',
-                    'Country 3'        
+                    'Country 3'
                 );
         """)
 
@@ -45,16 +45,16 @@ if __name__ == "__main__":
             INSERT INTO
                 Categories (
                     CategoryName,
-                    Description    
+                    Description
                 ) VALUES (
                     'Category 1',
-                    'Description category 1'       
+                    'Description category 1'
                 ), (
                     'Category 2',
-                    'Description category 2'       
+                    'Description category 2'
                 ), (
                     'Category 3',
-                    'Description category 3'       
+                    'Description category 3'
                 );
         """)
 
@@ -66,25 +66,25 @@ if __name__ == "__main__":
                     FirstName,
                     BirthDate,
                     Photo,
-                    Notes    
+                    Notes
                 ) VALUES (
                     'LastName 1',
                     'FirstName 1',
                     '2000-01-01',
                     'Photo 1',
-                    'Notes 1'       
+                    'Notes 1'
                 ), (
                     'LastName 2',
                     'FirstName 2',
                     '2001-01-01',
                     'Photo 2',
-                    'Notes 2'       
+                    'Notes 2'
                 ), (
                     'LastName 3',
                     'FirstName 3',
                     '2010-01-01',
                     'Photo 3',
-                    'Notes 3'       
+                    'Notes 3'
                 );
         """)
 
@@ -93,16 +93,16 @@ if __name__ == "__main__":
             INSERT INTO
                 Shippers (
                     ShipperName,
-                    Phone    
+                    Phone
                 ) VALUES (
                     'ShipperName 1',
-                    'Phone 1'      
+                    'Phone 1'
                 ), (
                     'ShipperName 2',
-                    'Phone 2'      
+                    'Phone 2'
                 ), (
                     'ShipperName 3',
-                    'Phone 3'     
+                    'Phone 3'
                 );
         """)
 
@@ -116,7 +116,7 @@ if __name__ == "__main__":
                     City,
                     PostalCode,
                     Country,
-                    Phone    
+                    Phone
                 ) VALUES (
                     'SupplierName 1',
                     'ContactName 1',
@@ -124,7 +124,7 @@ if __name__ == "__main__":
                     'City 1',
                     'PostalCode 1',
                     'Country 1',
-                    'Phone 1'      
+                    'Phone 1'
                 ), (
                     'SupplierName 2',
                     'ContactName 2',
@@ -132,7 +132,7 @@ if __name__ == "__main__":
                     'City 2',
                     'PostalCode 2',
                     'Country 2',
-                    'Phone 2'       
+                    'Phone 2'
                 ), (
                     'SupplierName 3',
                     'ContactName 3',
@@ -140,7 +140,7 @@ if __name__ == "__main__":
                     'City 3',
                     'PostalCode 3',
                     'Country 3',
-                    'Phone 3'      
+                    'Phone 3'
                 );
         """)
 
@@ -151,22 +151,22 @@ if __name__ == "__main__":
                     CustomerID,
                     EmployeeID,
                     OrderDate,
-                    ShipperID    
+                    ShipperID
                 ) VALUES (
                     1,
                     1,
                     '2020-02-22',
-                    1    
+                    1
                 ), (
                     2,
                     2,
                     '2020-02-21',
-                    2       
+                    2
                 ), (
                     3,
                     3,
                     '2020-02-20',
-                    3      
+                    3
                 );
         """)
 
@@ -178,25 +178,25 @@ if __name__ == "__main__":
                     SupplierID,
                     CategoryID,
                     Unit,
-                    Price    
+                    Price
                 ) VALUES (
                     'ProductName 1',
                     1,
                     1,
                     '1 piece',
-                    10.2    
+                    10.2
                 ), (
                     'ProductName 2',
                     2,
                     2,
                     '2 piece',
-                    10.3         
+                    10.3
                 ), (
                     'ProductName 3',
                     3,
                     3,
                     '3 piece',
-                    13.2        
+                    13.2
                 );
         """)
 
@@ -206,18 +206,18 @@ if __name__ == "__main__":
                 OrderDetails (
                     OrderID,
                     ProductID,
-                    Quantity    
+                    Quantity
                 ) VALUES (
                     1,
                     1,
-                    1   
+                    1
                 ), (
                     2,
                     2,
-                    2          
+                    2
                 ), (
                     3,
                     3,
-                    3      
+                    3
                 );
         """)

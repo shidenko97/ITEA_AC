@@ -34,7 +34,7 @@ if __name__ == "__main__":
                 Categories.CategoryID = Products.ProductID
             ORDER BY
                 Products.ProductName DESC
-            LIMIT 1       
+            LIMIT 1
         """)
 
         print(db_conn.fetchone())
