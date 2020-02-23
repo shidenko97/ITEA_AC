@@ -6,7 +6,7 @@ my_list = [1, 2, 3, 4]
 #         break
 # else:
 #     print("fine")
-    # если цикл НЕ прерывается то else отрабатывает
+# если цикл НЕ прерывается то else отрабатывает
 
 # while my_list:
 #     if len(my_list) == 1:

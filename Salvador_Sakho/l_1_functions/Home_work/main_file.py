@@ -1,7 +1,7 @@
 import Salvador_Sakho.l_1_functions.Home_work.action_handler as action_handler
 from Salvador_Sakho.l_1_functions.hw_start import insights
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     # remove_key
     # entities_to_list -> check entities_spend_sum ???
     # to_dict -> check main_dict
@@ -16,5 +16,8 @@ if __name__ == '__main__':
     # calculate_summary_case -> will print result
 
     ah = action_handler.HandleAction()
-    print(ah.run_process([line for line in insights],
-                   action='calculate_summary_case'))
+    print(
+        ah.run_process(
+            [line for line in insights], action="calculate_summary_case"
+        )
+    )
