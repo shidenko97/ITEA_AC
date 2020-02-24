@@ -4,6 +4,7 @@ def simple_function(a):
             return [a + b * xi for xi in x]
 
         return compute
+
     #
     # def squad():
     #     return 1
@@ -11,6 +12,7 @@ def simple_function(a):
     #     return line
     # else:
     #     return squad
+
 
 simple_function(3)()(1)
 x = range(-4, 4, 1)

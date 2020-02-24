@@ -89,6 +89,7 @@ class MetaNewVSInit(MetaBase):
         print("we are in call 2")
         super().__call__(*args, **kwargs)
 
+
 class Test(metaclass=MetaNewVSInit):
     # __metaclass__ = MetaNewVSInit
     def __init__(self):

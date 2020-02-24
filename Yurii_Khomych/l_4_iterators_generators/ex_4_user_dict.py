@@ -25,5 +25,5 @@ del d[7]
 
 d_1 = TwoWayDict()
 # d_1
-d_1.update({5:3})
+d_1.update({5: 3})
 d_1

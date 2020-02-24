@@ -1,12 +1,7 @@
 import json
 
 
-data = {
-    "president": {
-        "name": "Zaphod Beeblebrox",
-        "species": "Betelgeusian"
-    }
-}
+data = {"president": {"name": "Zaphod Beeblebrox", "species": "Betelgeusian"}}
 with open("data_file", "w") as write_file:
     json.dump(data, write_file, indent=4)
     json_string = json.dumps(data)

@@ -33,11 +33,11 @@ class Pizza:
 
 
 #
-Pizza(['mozzarella', 'tomatoes'], 1)
-Pizza(['mozzarella', 'tomatoes', 'ham', 'mushrooms'], 2)
-Pizza(['mozzarella'] * 4, 60)
+Pizza(["mozzarella", "tomatoes"], 1)
+Pizza(["mozzarella", "tomatoes", "ham", "mushrooms"], 2)
+Pizza(["mozzarella"] * 4, 60)
 
-Pizza(['cheese', 'tomatoes'], 80)
+Pizza(["cheese", "tomatoes"], 80)
 
 margherita = Pizza.margherita(20)
 prosciutto = Pizza.prosciutto()

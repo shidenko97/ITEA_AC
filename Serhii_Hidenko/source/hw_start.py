@@ -6306,4 +6306,5 @@ def remove_keys_from_insights(insights):
             if key in insight:
                 del insight[key]
 
+
 remove_keys_from_insights(insights=insights)

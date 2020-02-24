@@ -17,11 +17,7 @@ class MetaInsight(type):
         api = kwargs.get("api", None)
 
         # get class period by api parameter
-        res.period = {
-            1: 3,
-            2: 7,
-            3: 10
-        }.get(api, 30)
+        res.period = {1: 3, 2: 7, 3: 10}.get(api, 30)
 
         # print class name
         print(f"Metaclass instance name {cls.__name__.replace('Insight', '')}")

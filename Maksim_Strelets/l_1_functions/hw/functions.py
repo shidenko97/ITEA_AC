@@ -41,7 +41,6 @@ def elem_get(insight, key):
 
 # возвращает по имени
 def dict_get(insights_list, name):
-    path = name.split(".")
     res = []
 
     if not (type(insights_list) is list):
@@ -50,7 +49,10 @@ def dict_get(insights_list, name):
     for insight in insights_list:
         temp = elem_get(insight, name)
         if temp:
-            res += temp
+            if isinstance(temp, list):
+                res += temp
+            else:
+                res.append(temp)
 
     return res
 
@@ -69,12 +71,16 @@ def dfs(insights_list):
             keys2rem = []
             if key == "table_columns":
                 for x in insight[key]:
-                    if x["unit"] != "EUR": keys2rem.append(x)
-                for x in keys2rem: insight[key].remove(x)
+                    if x["unit"] != "EUR":
+                        keys2rem.append(x)
+                for x in keys2rem:
+                    insight[key].remove(x)
             elif key == "metric_sums":
                 for x in insight[key]:
-                    if x["unit_key"] != "EUR":  keys2rem.append(x)
-                for x in keys2rem: insight[key].remove(x)
+                    if x["unit_key"] != "EUR":
+                        keys2rem.append(x)
+                for x in keys2rem:
+                    insight[key].remove(x)
             elif key == "report_name":
                 if insight[key] == "device":
                     insight[key] = insight[key].upper()
@@ -88,9 +94,14 @@ def ins_to_dict(insights_list, key, val=""):
         val = key
     res = {}
     for i in range(len(insights_list)):
-        if key not in insights_list[i].keys() or val not in insights_list[i].keys():
+        if (
+            key not in insights_list[i].keys()
+            or val not in insights_list[i].keys()
+        ):
             continue
-        res[i if key not in insights_list[i].keys() else insights_list[i][key]] = insights_list[i][val]
+        res[
+            i if key not in insights_list[i].keys() else insights_list[i][key]
+        ] = insights_list[i][val]
     return res
 
 
@@ -99,7 +110,8 @@ def calculate(insights_list, name):
     arr = dict_get(insights_list, name)
     try:
         temp = []
-        for x in arr: temp.append(int(x))
+        for x in arr:
+            temp.append(int(x))
         return sum(temp), sum(temp) / len(temp)
     except Exception as e:
         print(e)
@@ -127,19 +139,27 @@ def summary(period, api, summ, sum_level, sum_general, **kwargs):
         1: lambda: (summ * sum_level / sum_general) / period,
         2: lambda: (summ * sum_level ^ 2 / sum_general) / period,
         3: lambda: (sum_level / sum_general) / period,
-        4: lambda: (sum_level * 100) / period
+        4: lambda: (sum_level * 100) / period,
     }
     return formula[api]()
 
 
 def calc_by_formula(insights_list):
-    keys = ["period", "api", "metric_sums.sum", "metric_sums.sum_level", "metric_sums.sum_general"]
+    keys = [
+        "period",
+        "api",
+        "metric_sums.sum",
+        "metric_sums.sum_level",
+        "metric_sums.sum_general",
+    ]
     res = []
     for insight in insights_list:
         if "metric_sums" not in insight.keys():
             continue
         for i in range(len(insight["metric_sums"])):
-            insight["metric_sums"][i]["summ"] = insight["metric_sums"][i]["sum"]
+            insight["metric_sums"][i]["summ"] = insight["metric_sums"][i][
+                "sum"
+            ]
             try:
                 val = summary(**{**insight, **insight["metric_sums"][i]})
             except Exception as e:
@@ -150,5 +170,5 @@ def calc_by_formula(insights_list):
 
 
 def save(insights_list):
-    with open('hw_out.json', 'w') as outfile:
+    with open("hw_out.json", "w") as outfile:
         json.dump(insights_list, outfile, ensure_ascii=False, indent=4)

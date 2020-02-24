@@ -10,7 +10,9 @@ if __name__ == "__main__":
         print(f"Error: {err}")
     else:
         print(f"dict: {bi.__dict__}")
-        print(f"get attr `report_name`: {bi.get_attribute_by_name('report_name')}")
+        print(
+            f"get attr `report_name`: {bi.get_attribute_by_name('report_name')}"
+        )
         print(f"print attr `report_name`: ", end="")
         bi.print_attribute_by_name("report_name")
         print(bi.currency)

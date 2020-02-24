@@ -1,4 +1,6 @@
-one, two, *kwargs = (1,2,3,4,5)
+one, two, *kwargs = (1, 2, 3, 4, 5)
+
+
 class Rectangle:
     def __init__(self, length, width, **kwargs):
         self.length = length
