@@ -1,4 +1,5 @@
 create database my_shop;
+-- \c my_shop
 create table customers
 (
     id            serial primary key,
