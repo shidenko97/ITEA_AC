@@ -15,24 +15,24 @@ def summary(insights):
                     insights[key] = 7
 
                 if key == 'metric_sums':
-                    for values in value:
-                        if values['sum_general'] != 0:
+                    for val in value:
+                        if val['sum_general'] != 0:
 
                             if insights['api'] == 1:
-                                values[
-                                    'summary'] = f"{(values['sum'] * values['sum_level'] / values['sum_general']) / insights['period']}"
+                                val[
+                                    'summary'] = f"{(val['sum'] * val['sum_level'] / val['sum_general']) / insights['period']}"
                             elif insights['api'] == 2:
-                                values[
-                                    'summary'] = f"{(values['sum'] * values['sum_level'] ** 2 / values['sum_general']) / insights['period']}"
+                                val[
+                                    'summary'] = f"{(val['sum'] * val['sum_level'] ** 2 / val['sum_general']) / insights['period']}"
                             elif insights['api'] == 3:
-                                values[
-                                    'summary'] = f"{(values['sum_level'] / values['sum_general']) / insights['period']}"
+                                val[
+                                    'summary'] = f"{(val['sum_level'] / val['sum_general']) / insights['period']}"
                             elif insights['api'] == 4:
-                                values['summary'] = f"{(values['sum_level'] * 100) / insights['period']}"
+                                val['summary'] = f"{(val['sum_level'] * 100) / insights['period']}"
                             else:
-                                values["summary"] = "Zero division problem!"
+                                val["summary"] = "Zero division problem!"
 
-                        return print(values)
+                        return print(val)
             except Exception as error:
                 print(f'Houston we have {error}')
 
