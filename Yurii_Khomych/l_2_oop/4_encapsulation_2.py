@@ -49,4 +49,3 @@ tesla_car._set_default_tires()
 type_ = 1
 
 name, *_ = ("Sergey", "Surname", "asdf")
-

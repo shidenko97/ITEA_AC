@@ -4,16 +4,16 @@
 #
 # class Dog:
 #
-    # Class Attribute
-    # species = 'mammal'
-    #
-    # Initializer / Instance Attributes
-    # def __init__(self, name, age):
-    #     self.name = name
-    #     self.age = age
-    #
-    # def my_method(self):
-    #     print()
+# Class Attribute
+# species = 'mammal'
+#
+# Initializer / Instance Attributes
+# def __init__(self, name, age):
+#     self.name = name
+#     self.age = age
+#
+# def my_method(self):
+#     print()
 #
 # dog = Dog("Bobby", "John")
 # dog.my_method()
@@ -35,21 +35,21 @@
 
 # class Dog:
 
-    # Class Attribute
-    # species = "mammal"
+# Class Attribute
+# species = "mammal"
 
-    # Initializer / Instance Attributes
-    # def __init__(self, name, age):
-    #     self.name = name
-    #     self.age = age
+# Initializer / Instance Attributes
+# def __init__(self, name, age):
+#     self.name = name
+#     self.age = age
 
-    # instance method
-    # def description(self):
-    #     return f"{self.name} is {self.age} years old"
+# instance method
+# def description(self):
+#     return f"{self.name} is {self.age} years old"
 
-    # instance method
-    # def speak(self, sound):
-    #     return "{} says {}".format(self.name, sound)
+# instance method
+# def speak(self, sound):
+#     return "{} says {}".format(self.name, sound)
 
 
 # Instantiate the Dog object
@@ -71,14 +71,17 @@
 # any([isinstance(insight["metric_weight"], int) for insight in insights])
 # any([key in insights for key in ("metric_weight", "key2")])
 
-my_dict = {1:
-     lambda ins_period, sum, sum_level, sum_general, **kwargs:
-     (sum * sum_level / sum_general) / ins_period}
-    # ins_period=insight["period"],
-    # sum=insight["sum"],
-    # sum_level=insight["sum_level"],
-    # sum_general=insight["sum_general"],
-    # jony=1,
-    # misha=1,
+my_dict = {
+    1: lambda ins_period, sum, sum_level, sum_general, **kwargs: (
+        sum * sum_level / sum_general
+    )
+    / ins_period
+}
+# ins_period=insight["period"],
+# sum=insight["sum"],
+# sum_level=insight["sum_level"],
+# sum_general=insight["sum_general"],
+# jony=1,
+# misha=1,
 
 pass

@@ -77,10 +77,10 @@
 #
 # def my_sum(a, b, *args):
 #     result = 0
-    # Iterating over the Python args tuple
-    # for x in list(args):
-    #     result += x
-    # return result
+# Iterating over the Python args tuple
+# for x in list(args):
+#     result += x
+# return result
 # my_sum(1, 2, 3, 4, 5, 6)
 #
 # a, b, *c = 1, 2, 3, 4, 5
@@ -157,19 +157,21 @@
 # #
 # deliver_presents_recursively(houses=houses)
 # def factorial_recursive(n):
-    # Base case: 1! = 1
-    # if n == 1:
-    #     return 1
+# Base case: 1! = 1
+# if n == 1:
+#     return 1
 
-    # Recursive case: n! = n * (n-1)!
-    # else:
-    #     return n * factorial_recursive(n-1)
+# Recursive case: n! = n * (n-1)!
+# else:
+#     return n * factorial_recursive(n-1)
 #
 # x = factorial_recursive(10)
 
 #
 def identity(x):
-     return x
+    return x
+
+
 a = lambda x: x + 1
 #
 # a = filter(lambda arg, arg_2: arg if arg > 1 else "Fine" if arg > 2 else "Good", [1,2,3])
@@ -243,7 +245,7 @@ pass
 # a = 5
 # def function():
 #     print(a)
-    # a = 10
+# a = 10
 # function()
 # print()
 #
@@ -284,17 +286,16 @@ pass
 # get_network_func(network_name="facebook")(male="MAN")
 
 
-
 def a():
-     return 1
+    return 1
 
 
 def b():
-     return 1
+    return 1
 
 
 class A:
-     pass
+    pass
 
 
 {"A": 1, "A": 1}

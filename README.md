@@ -19,3 +19,11 @@ For create HW or practise you should do:
 
 8. Create Pull Request from your branch_name and repository to main repo
 
+P.S.
+For update your branch by master:
+1. git stash
+2. git checkout master
+3. git pull
+4. git checkout my_branch
+5. git merge master
+6. git stash apply

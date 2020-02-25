@@ -19,7 +19,7 @@ def get_class_for_insight(api=None) -> BaseInsight:
         1: FacebookInsight,
         2: GoogleInsight,
         3: TwitterInsight,
-        4: SnapchatInsight
+        4: SnapchatInsight,
     }.get(api, BaseInsight)
 
 
