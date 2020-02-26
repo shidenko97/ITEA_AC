@@ -1,6 +1,5 @@
 import os
 from sqlalchemy import Column, Integer, String, Text, Date, Numeric, ForeignKey
-from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from Serhii_Hidenko.l_11_sqlalchemy.hw.my_db import MyDb
 
@@ -122,39 +121,15 @@ class Suppliers(Base):
         return f"<Suppliers({self.supplier_name})>"
 
 
-def create_db() -> MyDb:
-    """
-    Initiate and create db if not exists
-    :return: Created DB
-    :rtype: MyDb
-    """
+if __name__ == "__main__":
 
-    db_ = MyDb(
+    db = MyDb.create(
         username=os.environ.get("PG_USERNAME"),
         password=os.environ.get("PG_PASSWORD"),
         hostname=os.environ.get("PG_HOSTNAME"),
         database=os.environ.get("PG_DATABASE"),
         port=os.environ.get("PG_PORT")
     )
-    db_.create_db()
-
-    return db_
-
-
-def create_db_engine(db_):
-    """
-    Initiate engine
-    """
-
-    return create_engine(db_.connection_url, echo=True)
-
-
-if __name__ == "__main__":
-
-    db = create_db()
-
-    # Initiate engine
-    engine = create_db_engine(db)
 
     # Create all initiated tables
-    db.create_tables(base=Base, engine=engine)
+    db.create_tables(base=Base)

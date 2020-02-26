@@ -1,4 +1,5 @@
 from sqlalchemy_utils import create_database, database_exists
+from sqlalchemy import create_engine
 
 
 class MyDb:
@@ -9,7 +10,8 @@ class MyDb:
             password: str = "",
             database: str = "",
             hostname: str = "",
-            port: str = ""):
+            port: str = ""
+    ):
         """
         Create object and initiate connection url
         :param username: Username for connection to DB
@@ -26,6 +28,7 @@ class MyDb:
 
         self.__connection_url = f"postgresql://{username}:{password}@" \
                                 f"{hostname}:{port}/{database}"
+        self.__engine = create_engine(self.connection_url)
 
     def create_db(self):
         """Create db by connection url if not exists"""
@@ -33,17 +36,42 @@ class MyDb:
         if not database_exists(url=self.__connection_url):
             create_database(url=self.__connection_url)
 
+    def create_tables(self, base=None, metadata=None):
+        """Function for creating initiated tables in db"""
+
+        if not metadata:
+            base.metadata.create_all(self.__engine)
+        else:
+            metadata.create_all(self.__engine)
+
     @property
     def connection_url(self) -> str:
         """Getter for connection url"""
 
         return self.__connection_url
 
-    @staticmethod
-    def create_tables(base=None, engine=None, metadata=None):
-        """Function for creating initiated tables in db"""
+    @classmethod
+    def create(
+            cls,
+            username: str = "",
+            password: str = "",
+            database: str = "",
+            hostname: str = "",
+            port: str = ""
+    ):
+        """
+        Initiate and create db if not exists
+        :return: Created DB
+        :rtype: MyDb
+        """
 
-        if not metadata:
-            base.metadata.create_all(engine)
-        else:
-            metadata.create_all(engine)
+        db_ = cls(
+            username=username,
+            password=password,
+            hostname=hostname,
+            database=database,
+            port=port
+        )
+        db_.create_db()
+
+        return db_

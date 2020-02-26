@@ -1,21 +1,10 @@
 import os
 from sqlalchemy import Column, Integer, String, Text, Date, Numeric, \
     ForeignKey, MetaData, Table
-from sqlalchemy import create_engine
 from Serhii_Hidenko.l_11_sqlalchemy.hw.my_db import MyDb
 
 
 if __name__ == "__main__":
-
-    # Initiate and create db if not exists
-    db = MyDb(
-        username=os.environ.get("PG_USERNAME"),
-        password=os.environ.get("PG_PASSWORD"),
-        hostname=os.environ.get("PG_HOSTNAME"),
-        database=os.environ.get("PG_DATABASE"),
-        port=os.environ.get("PG_PORT")
-    )
-    db.create_db()
 
     # Initiate metadata
     metadata = MetaData()
@@ -102,8 +91,13 @@ if __name__ == "__main__":
         Column("phone", String(16)),
     )
 
-    # Initiate engine
-    engine = create_engine(db.connection_url, echo=True)
+    db = MyDb.create(
+        username=os.environ.get("PG_USERNAME"),
+        password=os.environ.get("PG_PASSWORD"),
+        hostname=os.environ.get("PG_HOSTNAME"),
+        database=os.environ.get("PG_DATABASE"),
+        port=os.environ.get("PG_PORT")
+    )
 
     # Create all initiated tables
-    db.create_tables(engine=engine, metadata=metadata)
+    db.create_tables(metadata=metadata)
