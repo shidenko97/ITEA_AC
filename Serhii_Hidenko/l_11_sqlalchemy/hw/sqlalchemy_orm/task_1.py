@@ -122,20 +122,39 @@ class Suppliers(Base):
         return f"<Suppliers({self.supplier_name})>"
 
 
-if __name__ == "__main__":
+def create_db() -> MyDb:
+    """
+    Initiate and create db if not exists
+    :return: Created DB
+    :rtype: MyDb
+    """
 
-    # Initiate and create db if not exists
-    db = MyDb(
+    db_ = MyDb(
         username=os.environ.get("PG_USERNAME"),
         password=os.environ.get("PG_PASSWORD"),
         hostname=os.environ.get("PG_HOSTNAME"),
         database=os.environ.get("PG_DATABASE"),
         port=os.environ.get("PG_PORT")
     )
-    db.create_db()
+    db_.create_db()
+
+    return db_
+
+
+def create_db_engine(db_):
+    """
+    Initiate engine
+    """
+
+    return create_engine(db_.connection_url, echo=True)
+
+
+if __name__ == "__main__":
+
+    db = create_db()
 
     # Initiate engine
-    engine = create_engine(db.connection_url, echo=True)
+    engine = create_db_engine(db)
 
     # Create all initiated tables
     db.create_tables(base=Base, engine=engine)
