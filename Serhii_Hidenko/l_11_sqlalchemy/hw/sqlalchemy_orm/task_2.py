@@ -5,9 +5,15 @@ from Serhii_Hidenko.l_11_sqlalchemy.hw.sqlalchemy_orm.task_1 import *
 
 if __name__ == "__main__":
 
-    # Initiate DB
-    db = create_db()
-    engine = create_db_engine(db)
+    # Initiate DB and engine
+    db = MyDb.create(
+        username=os.environ.get("PG_USERNAME"),
+        password=os.environ.get("PG_PASSWORD"),
+        hostname=os.environ.get("PG_HOSTNAME"),
+        database=os.environ.get("PG_DATABASE"),
+        port=os.environ.get("PG_PORT")
+    )
+    engine = db.engine
 
     # Initiate session
     Session = sessionmaker(bind=engine)
