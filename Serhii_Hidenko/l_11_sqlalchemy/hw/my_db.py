@@ -50,6 +50,12 @@ class MyDb:
 
         return self.__connection_url
 
+    @property
+    def engine(self):
+        """Getter for engine of db"""
+
+        return self.__engine
+
     @classmethod
     def create(
             cls,
