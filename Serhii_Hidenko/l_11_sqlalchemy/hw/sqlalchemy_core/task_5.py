@@ -1,4 +1,4 @@
-from sqlalchemy import or_, and_, select
+from sqlalchemy import select
 from Serhii_Hidenko.l_11_sqlalchemy.hw.sqlalchemy_core.task_1 import *
 
 

@@ -1,4 +1,3 @@
-from sqlalchemy import or_, and_
 from sqlalchemy.orm import sessionmaker
 from Serhii_Hidenko.l_11_sqlalchemy.hw.sqlalchemy_orm.task_1 import *
 
