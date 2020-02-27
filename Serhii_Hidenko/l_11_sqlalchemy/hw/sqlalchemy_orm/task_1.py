@@ -1,6 +1,7 @@
 import os
 from sqlalchemy import Column, Integer, String, Text, Date, Numeric, ForeignKey
 from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import relationship
 from Serhii_Hidenko.l_11_sqlalchemy.hw.my_db import MyDb
 
 
@@ -30,6 +31,10 @@ class Categories(Base):
     id = Column(Integer, primary_key=True)
     category_name = Column(String(64))
     description = Column(Text)
+
+    products = relationship(
+        "Products", back_populates="category"
+    )
 
     def __repr__(self):
         return f"<Categories({self.category_name})>"
@@ -92,6 +97,10 @@ class Products(Base):
                                              ondelete="CASCADE"))
     unit = Column(String(32))
     price = Column(Numeric("10,2"))
+
+    category = relationship(
+        "Categories", back_populates="products"
+    )
 
     def __repr__(self):
         return f"<Products({self.product_name})>"
