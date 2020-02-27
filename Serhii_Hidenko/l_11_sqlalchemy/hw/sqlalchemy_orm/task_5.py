@@ -1,5 +1,7 @@
 from sqlalchemy.orm import sessionmaker
-from Serhii_Hidenko.l_11_sqlalchemy.hw.sqlalchemy_orm.task_1 import *
+import os
+from Serhii_Hidenko.l_11_sqlalchemy.hw.sqlalchemy_orm.task_1 import MyDb,\
+    Categories, Suppliers, Products
 
 
 if __name__ == "__main__":
