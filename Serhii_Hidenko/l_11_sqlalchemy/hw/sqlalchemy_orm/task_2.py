@@ -128,3 +128,5 @@ if __name__ == "__main__":
     session.add(OrderDetails(order_id=2, product_id=2, quantity=2))
 
     session.commit()
+
+    session.close()
