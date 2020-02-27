@@ -42,8 +42,10 @@ order_detail_table = Table(
     "order_details",
     metadata,
     Column("id", Integer, primary_key=True),
-    Column("order_id", Integer, ForeignKey("orders.id")),
-    Column("product_id", Integer, ForeignKey("products.id")),
+    Column("order_id", Integer, ForeignKey("orders.id",
+                                           ondelete="CASCADE")),
+    Column("product_id", Integer, ForeignKey("products.id",
+                                             ondelete="CASCADE")),
     Column("quantity", Integer),
 )
 
@@ -51,10 +53,13 @@ order_table = Table(
     "orders",
     metadata,
     Column("id", Integer, primary_key=True),
-    Column("customer_id", Integer, ForeignKey("customers.id")),
-    Column("employee_id", Integer, ForeignKey("employees.id")),
+    Column("customer_id", Integer, ForeignKey("customers.id",
+                                              ondelete="CASCADE")),
+    Column("employee_id", Integer, ForeignKey("employees.id",
+                                              ondelete="CASCADE")),
     Column("order_date", Date),
-    Column("shipper_id", Integer, ForeignKey("shippers.id")),
+    Column("shipper_id", Integer, ForeignKey("shippers.id",
+                                             ondelete="CASCADE")),
 )
 
 product_table = Table(
@@ -62,7 +67,8 @@ product_table = Table(
     metadata,
     Column("id", Integer, primary_key=True),
     Column("product_name", String(64)),
-    Column("supplier_id", Integer, ForeignKey("suppliers.id")),
+    Column("supplier_id", Integer, ForeignKey("suppliers.id",
+                                              ondelete="CASCADE")),
     Column("category_id", Integer, ForeignKey("categories.id")),
     Column("unit", String(32)),
     Column("price", Numeric("10,2")),

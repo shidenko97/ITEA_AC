@@ -55,8 +55,8 @@ class OrderDetails(Base):
     __tablename__ = "order_details"
 
     id = Column(Integer, primary_key=True)
-    order_id = Column(Integer, ForeignKey("orders.id"))
-    product_id = Column(Integer, ForeignKey("products.id"))
+    order_id = Column(Integer, ForeignKey("orders.id", ondelete="CASCADE"))
+    product_id = Column(Integer, ForeignKey("products.id", ondelete="CASCADE"))
     quantity = Column(Integer)
 
     def __repr__(self):
@@ -68,10 +68,13 @@ class Orders(Base):
     __tablename__ = "orders"
 
     id = Column(Integer, primary_key=True)
-    customer_id = Column(Integer, ForeignKey("customers.id"))
-    employee_id = Column(Integer, ForeignKey("employees.id"))
+    customer_id = Column(Integer, ForeignKey("customers.id",
+                                             ondelete="CASCADE"))
+    employee_id = Column(Integer, ForeignKey("employees.id",
+                                             ondelete="CASCADE"))
     order_date = Column(Date)
-    shipper_id = Column(Integer, ForeignKey("shippers.id"))
+    shipper_id = Column(Integer, ForeignKey("shippers.id",
+                                            ondelete="CASCADE"))
 
     def __repr__(self):
         return f"<Orders({self.id})>"
@@ -83,8 +86,10 @@ class Products(Base):
 
     id = Column(Integer, primary_key=True)
     product_name = Column(String(64))
-    supplier_id = Column(Integer, ForeignKey("suppliers.id"))
-    category_id = Column(Integer, ForeignKey("categories.id"))
+    supplier_id = Column(Integer, ForeignKey("suppliers.id",
+                                             ondelete="CASCADE"))
+    category_id = Column(Integer, ForeignKey("categories.id",
+                                             ondelete="CASCADE"))
     unit = Column(String(32))
     price = Column(Numeric("10,2"))
 
