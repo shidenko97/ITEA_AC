@@ -5,7 +5,7 @@ from ex_1_define_and_create_tables_orm import User, engine
 Session = sessionmaker(bind=engine)
 session = Session()
 
-for instance in session.query(User).order_by(User.id):
+for instance in session.query(User).order_by(User.id).limit(1):
     print(instance.name, instance.fullname)
 
 for name, fullname in session.query(User.name, User.fullname):
@@ -24,7 +24,7 @@ for row in session.query(user_alias, user_alias.name).all():
 for u in session.query(User).order_by(User.id)[1:3]:
     print(u)
 
-for (name,) in session.query(User.name).filter_by(fullname="Ed Jones"):
+for name, fullname in session.query(User.name, User.fullname).filter_by(fullname="Ed Jones"):
     print(name)
 
 for (name,) in session.query(User.name).filter(User.fullname == "Ed Jones"):
@@ -96,11 +96,11 @@ query.all()
 # first() applies a limit of one and returns the first result as a scalar:
 query.first()
 # one() fully fetches all rows, and if not exactly one object identity or composite row is present in the result, raises an error. With multiple rows found:
-user = query.one()
-user = query.filter(User.id == 99).one()
+# user = query.one()
+# user = query.filter(User.id == 99).one()
 # one_or_none() is like one()
-user = query.filter(User.id == 99).one_or_none()
-query = session.query(User.id).filter(User.name == "ed").order_by(User.id)
+# user = query.filter(User.id == 99).one_or_none()
+query = session.query(User).filter(User.name == "ed").order_by(User.id)
 query.scalar()
 
 session.query(User).filter(User.name.like("%ed")).count()

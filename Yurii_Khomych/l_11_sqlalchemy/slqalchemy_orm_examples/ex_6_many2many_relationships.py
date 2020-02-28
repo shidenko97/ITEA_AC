@@ -11,6 +11,8 @@ post_keywords = Table(
     Column("post_id", ForeignKey("posts.id"), primary_key=True),
     Column("keyword_id", ForeignKey("keywords.id"), primary_key=True),
 )
+# (1, 1)
+# (1, 2)
 
 
 class BlogPost(Base):

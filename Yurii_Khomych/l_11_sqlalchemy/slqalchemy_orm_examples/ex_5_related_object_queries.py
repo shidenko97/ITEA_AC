@@ -17,7 +17,7 @@ jack.addresses = [
 session.add(jack)
 session.commit()
 
-jack = session.query(User).filter_by(name="jack").one()
+# jack = session.query(User).filter_by(name="jack").one()
 jack.addresses
 
 # Querying with join
@@ -76,7 +76,7 @@ session.query(Address).filter(
 
 session.close()
 # ROLLBACK
-# Add to Users calscade delete
+# Add to Users cascade delete
 
 jack = session.query(User).get(5)
 del jack.addresses[1]

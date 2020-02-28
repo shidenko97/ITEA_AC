@@ -234,9 +234,9 @@ stmt = users.insert().values(name=bindparam("_name") + " .. name")
 conn.execute(
     stmt,
     [
-        {"id": 4, "_name": "name1"},
-        {"id": 5, "_name": "name2"},
-        {"id": 6, "_name": "name3"},
+        {"_name": "name1"},
+        {"_name": "name2"},
+        {"_name": "name3"},
     ],
 )
 stmt = users.update().where(users.c.name == "jack").values(name="ed")

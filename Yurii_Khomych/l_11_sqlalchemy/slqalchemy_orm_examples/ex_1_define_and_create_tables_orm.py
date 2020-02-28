@@ -33,11 +33,11 @@ class User(Base):
     fullname = Column(String)
     nickname = Column(String)
 
-    # addresses = relationship(
-    #     "Address",
-    #     back_populates='user',
-    #     cascade="all, delete, delete-orphan"
-    # )
+    addresses = relationship(
+        "Address",
+        back_populates='user',
+        cascade="all, delete, delete-orphan"
+    )
 
     def __repr__(self):
         return f"<User(name='{self.name}', fullname='{self.fullname}', nickname='{self.nickname}')>"
