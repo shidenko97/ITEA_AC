@@ -22,22 +22,27 @@ if __name__ == "__main__":
     Session = sessionmaker(bind=engine)
     session = Session()
 
-    session.\
-        query(Categories).\
-        filter(Categories.id == 1).\
+    (
+        session.
+        query(Categories).
+        filter(Categories.id == 1).
         update({
             "category_name": "Category updated by orm"
         })
+    )
 
-    session. \
-        query(Customers). \
-        filter(Customers.postal_code == "Updated code"). \
+    (
+        session.
+        query(Customers).
+        filter(Customers.postal_code == "Updated code").
         update({
             "postal_code": "02090"
         })
+    )
 
-    session. \
-        query(Employees). \
+    (
+        session.
+        query(Employees).
         filter(
             or_(
                 Employees.notes == "",
@@ -46,9 +51,11 @@ if __name__ == "__main__":
         ).update({
             "photo": "wow_photo.png"
         })
+    )
 
-    session. \
-        query(OrderDetails). \
+    (
+        session.
+        query(OrderDetails).
         filter(
             and_(
                 OrderDetails.order_id == 1,
@@ -57,37 +64,46 @@ if __name__ == "__main__":
         ).update({
             "quantity": 20
         })
+    )
 
-    session. \
-        query(Orders). \
+    (
+        session.
+        query(Orders).
         update({
             "shipper_id": 1
         })
+    )
 
-    session. \
-        query(Products). \
+    (
+        session.
+        query(Products).
         filter(
             Products.price >= 2
         ).update({
             "unit": 100,
             "price": 0
         })
+    )
 
-    session. \
-        query(Shippers). \
+    (
+        session.
+        query(Shippers).
         filter(
             Shippers.phone == ""
         ).update({
             "shipper_name": "My phone"
         })
+    )
 
-    session. \
-        query(Suppliers). \
+    (
+        session.
+        query(Suppliers).
         filter(
             Suppliers.country == "Ukraine"
         ).update({
             "city": Suppliers.postal_code
         })
+    )
 
     session.commit()
 

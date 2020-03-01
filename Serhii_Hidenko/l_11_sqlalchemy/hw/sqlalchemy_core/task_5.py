@@ -16,57 +16,55 @@ if __name__ == "__main__":
     )
     engine = db.engine
 
-    conn = engine.connect()
+    with engine.connect() as conn:
 
-    print(
-        conn.execute(
-            select(
-                [
-                    category_table.c.category_name
-                ]
-            )
-        ).fetchone()
-    )
+        print(
+            conn.execute(
+                select(
+                    [
+                        category_table.c.category_name
+                    ]
+                )
+            ).fetchone()
+        )
 
-    print(
-        conn.execute(
-            select(
-                [
-                    supplier_table.c.supplier_name
-                ]
-            ).where(
-                supplier_table.c.city.like("%city%")
-            ).
-            group_by(supplier_table.c.id).
-            having(supplier_table.c.id > 0)
-        ).fetchall()
-    )
+        print(
+            conn.execute(
+                select(
+                    [
+                        supplier_table.c.supplier_name
+                    ]
+                ).where(
+                    supplier_table.c.city.like("%city%")
+                ).
+                group_by(supplier_table.c.id).
+                having(supplier_table.c.id > 0)
+            ).fetchall()
+        )
 
-    print(
-        conn.execute(
-            select(
-                [
-                    product_table.c.product_name,
-                    category_table.c.category_name
-                ]
-            ).
-            select_from(product_table.join(category_table)).
-            where(category_table.c.id > 0).
-            order_by(product_table.c.product_name.desc())
-        ).fetchall()[:3]
-    )
+        print(
+            conn.execute(
+                select(
+                    [
+                        product_table.c.product_name,
+                        category_table.c.category_name
+                    ]
+                ).
+                select_from(product_table.join(category_table)).
+                where(category_table.c.id > 0).
+                order_by(product_table.c.product_name.desc())
+            ).fetchall()[:3]
+        )
 
-    print(
-        conn.execute(
-            select(
-                [
-                    product_table.c.product_name,
-                    category_table.c.category_name
-                ]
-            ).
-            where(category_table.c.id > 0).
-            distinct(category_table.c.category_name)
-        ).fetchall()
-    )
-
-    conn.close()
+        print(
+            conn.execute(
+                select(
+                    [
+                        product_table.c.product_name,
+                        category_table.c.category_name
+                    ]
+                ).
+                where(category_table.c.id > 0).
+                distinct(category_table.c.category_name)
+            ).fetchall()
+        )

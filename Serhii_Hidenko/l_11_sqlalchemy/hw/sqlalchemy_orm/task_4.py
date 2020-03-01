@@ -22,55 +22,71 @@ if __name__ == "__main__":
     Session = sessionmaker(bind=engine)
     session = Session()
 
-    session.\
-        query(Categories).\
-        filter(Categories.id == 1).\
+    (
+        session.
+        query(Categories).
+        filter(Categories.id == 1).
         delete()
+    )
 
-    session. \
-        query(Customers). \
-        filter(Customers.postal_code == "Updated code"). \
+    (
+        session.
+        query(Customers).
+        filter(Customers.postal_code == "Updated code").
         delete()
+    )
 
-    session. \
-        query(Employees). \
+    (
+        session.
+        query(Employees).
         filter(
             or_(
                 Employees.notes == "",
                 Employees.notes == "Employee notes core 2"
             )
         ).delete()
+    )
 
-    session. \
-        query(OrderDetails). \
+    (
+        session.
+        query(OrderDetails).
         filter(
             and_(
                 OrderDetails.order_id == 1,
                 OrderDetails.product_id == 1
             )
         ).delete()
+    )
 
-    session. \
-        query(Orders). \
+    (
+        session.
+        query(Orders).
         delete()
+    )
 
-    session. \
-        query(Products). \
+    (
+        session.
+        query(Products).
         filter(
             Products.price >= 2
         ).delete()
+    )
 
-    session. \
-        query(Shippers). \
+    (
+        session.
+        query(Shippers).
         filter(
             Shippers.phone == ""
         ).delete()
+    )
 
-    session. \
-        query(Suppliers). \
+    (
+        session.
+        query(Suppliers).
         filter(
             Suppliers.country == "Ukraine"
         ).delete()
+    )
 
     session.commit()
 

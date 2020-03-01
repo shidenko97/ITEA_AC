@@ -17,64 +17,62 @@ if __name__ == "__main__":
     )
     engine = db.engine
 
-    conn = engine.connect()
+    with engine.connect() as conn:
 
-    conn.execute(
-        category_table.delete().
-        where(category_table.c.category_name.like("%category%"))
-    )
+        conn.execute(
+            category_table.delete().
+            where(category_table.c.category_name.like("%category%"))
+        )
 
-    conn.execute(
-        customer_table.delete().
-        where(customer_table.c.city.contains("city"))
-    )
+        conn.execute(
+            customer_table.delete().
+            where(customer_table.c.city.contains("city"))
+        )
 
-    conn.execute(
-        employee_table.delete().
-        where(
-            or_(
-                employee_table.c.id == 1,
-                employee_table.c.id == 2,
+        conn.execute(
+            employee_table.delete().
+            where(
+                or_(
+                    employee_table.c.id == 1,
+                    employee_table.c.id == 2,
+                )
             )
         )
-    )
 
-    conn.execute(
-        order_detail_table.delete().
-        where(
-            order_detail_table.c.quantity < 5
-        )
-    )
-
-    conn.execute(
-        order_table.delete().
-        where(
-            and_(
-                order_table.c.id == 1,
-                order_table.c.customer_id == 1,
+        conn.execute(
+            order_detail_table.delete().
+            where(
+                order_detail_table.c.quantity < 5
             )
         )
-    )
 
-    conn.execute(
-        product_table.delete()
-    )
-
-    conn.execute(
-        shipper_table.delete().
-        where(
-            shipper_table.c.phone.like("%core _")
-        )
-    )
-
-    conn.execute(
-        supplier_table.delete().
-        where(
-            and_(
-                supplier_table.c.city.like("%city%"),
-                supplier_table.c.country.like("%country%"),
+        conn.execute(
+            order_table.delete().
+            where(
+                and_(
+                    order_table.c.id == 1,
+                    order_table.c.customer_id == 1,
+                )
             )
         )
-    )
 
-    conn.close()
+        conn.execute(
+            product_table.delete()
+        )
+
+        conn.execute(
+            shipper_table.delete().
+            where(
+                shipper_table.c.phone.like("%core _")
+            )
+        )
+
+        conn.execute(
+            supplier_table.delete().
+            where(
+                and_(
+                    supplier_table.c.city.like("%city%"),
+                    supplier_table.c.country.like("%country%"),
+                )
+            )
+        )
