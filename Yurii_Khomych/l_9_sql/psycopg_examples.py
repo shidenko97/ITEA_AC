@@ -16,9 +16,9 @@ conn = psycopg2.connect(
 )
 conn.autocommit = True
 cursor = conn.cursor()
-cursor.execute("""drop table if exists customers""")
+cursor.execute("drop table if exists customers cascade")
 # conn.commit()
-# con.rollback()
+# conn.rollback()
 cursor.execute(
     """
 create table customers
@@ -91,7 +91,7 @@ with conn:
 cursor.close()
 conn.close()
 #
-# from contextlib import closing
+from contextlib import closing
 # with closing(psycopg2.connect(...)) as conn:
 #     with conn.cursor() as cursor:
 #         cursor.execute('SELECT * FROM table_name LIMIT 5')
@@ -113,7 +113,7 @@ def create_db(cursor, db_name):
     cursor.execute(query)
 
 
-def create_table(query):
+def create_table(cursor, query):
     cursor.execute(query)
 
 
