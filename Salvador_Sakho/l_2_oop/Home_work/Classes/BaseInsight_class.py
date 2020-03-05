@@ -3,9 +3,16 @@ from Salvador_Sakho.l_2_oop.Home_work.Classes.MetricSummary_class \
 
 
 class BaseInsight:
-    def __init__(self, metric_name=None, api=None, report_name=None
-                 , objective=None, unit=None, currency=None, id=None
-                 , validator_insight_type=None, metric_summary=None, **kwargs):
+    def __init__(self, metric_name=None,
+                 api=None,
+                 report_name=None,
+                 objective=None,
+                 unit=None,
+                 currency=None,
+                 id=None,
+                 validator_insight_type=None,
+                 metric_summary=None,
+                 **kwargs):
         self.check_api_value(api)
         self.metric_name = metric_name
         self.api = api
