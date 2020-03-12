@@ -54,23 +54,22 @@ def summary(insights):
                                 ] = f"{(values['sum_level'] * 100) / insights['period']}"
 
                             if insights['api'] == 1:
-                                val[
-                                    'summary'] = (val['sum'] * val['sum_level'] / val['sum_general']) \
-                                                 / insights['period']
+                                values['summary'] = \
+                                    (values['sum'] * values['sum_level'] / values['sum_general']) / insights['period']
                             elif insights['api'] == 2:
-                                val[
-                                    'summary'] = (val['sum'] * val['sum_level'] ** 2
-                                                  / val['sum_general']) / insights['period']
+                                values[
+                                    'summary'] = (values['sum'] * values['sum_level'] ** 2
+                                                  / values['sum_general']) / insights['period']
                             elif insights['api'] == 3:
-                                val[
-                                    'summary'] = (val['sum_level'] / val['sum_general']) / insights['period']
+                                values[
+                                    'summary'] = (values['sum_level'] / values['sum_general']) / insights['period']
                             elif insights['api'] == 4:
-                                val['summary'] = f"{(val['sum_level'] * 100) / insights['period']}"
+                                values['summary'] = f"{(values['sum_level'] * 100) / insights['period']}"
 
                             else:
-                                val["summary"] = "Zero division problem!"
+                                values["summary"] = "Zero division problem!"
 
-                        return print(val)
+                        return print(values)
             except Exception as error:
                 print(f'Houston we have {error}')
 
