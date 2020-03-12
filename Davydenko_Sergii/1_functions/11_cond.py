@@ -17,7 +17,6 @@ def summary(insights):
                 if key == 'metric_sums':
                     for val in value:
                         if val['sum_general'] != 0:
-<<<<<<< HEAD
 
                             if insights['api'] == 1:
                                 val[
@@ -61,8 +60,6 @@ def summary(insights):
                                     "summary"
                                 ] = f"{(values['sum_level'] * 100) / insights['period']}"
 
-=======
-
                             if insights['api'] == 1:
                                 val[
                                     'summary'] = f"{(val['sum'] * val['sum_level'] / val['sum_general']) / insights['period']}"
@@ -74,7 +71,7 @@ def summary(insights):
                                     'summary'] = f"{(val['sum_level'] / val['sum_general']) / insights['period']}"
                             elif insights['api'] == 4:
                                 val['summary'] = f"{(val['sum_level'] * 100) / insights['period']}"
->>>>>>> d2dad7cb594e9d9f72d620bda4b9d69fe53c9649
+
                             else:
                                 val["summary"] = "Zero division problem!"
 
