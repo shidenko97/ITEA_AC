@@ -20,14 +20,12 @@ def summary(insights):
 
                             if insights['api'] == 1:
                                 val[
-                                    'summary'] = (
-                                                     (val['sum'] * val['sum_level'] / val['sum_general'])
-                                                 ) / insights['period']
+                                    'summary'] = (val['sum'] * val['sum_level']
+                                                  / val['sum_general']) / insights['period']
                             elif insights['api'] == 2:
                                 val[
-                                    'summary'] = (
-                                                     (val['sum'] * val['sum_level'] ** 2 / val['sum_general'])
-                                                 ) / insights['period']
+                                    'summary'] = (val['sum'] * val['sum_level'] ** 2
+                                                  / val['sum_general']) / insights['period']
                             elif insights['api'] == 3:
                                 val[
                                     'summary'] = (val['sum_level'] / val['sum_general']) \
@@ -42,15 +40,13 @@ def summary(insights):
                             if insights["api"] == 1:
                                 values[
                                     "summary"
-                                ] = (
-                                        (values['sum'] * values['sum_level'] / values['sum_general'])
-                                    ) / insights['period']
+                                ] = (values['sum'] * values['sum_level']
+                                     / values['sum_general']) / insights['period']
                             elif insights["api"] == 2:
                                 values[
                                     "summary"
-                                ] = (
-                                        (values['sum'] * values['sum_level'] ** 2 / values['sum_general'])
-                                    ) / insights['period']
+                                ] = (values['sum'] * values['sum_level'] ** 2
+                                     / values['sum_general']) / insights['period']
                             elif insights["api"] == 3:
                                 values[
                                     "summary"
@@ -62,13 +58,16 @@ def summary(insights):
 
                             if insights['api'] == 1:
                                 val[
-                                    'summary'] = f"{(val['sum'] * val['sum_level'] / val['sum_general']) / insights['period']}"
+                                    'summary'] = (val['sum'] * val['sum_level']
+                                                  / val['sum_general']) / insights['period']
                             elif insights['api'] == 2:
                                 val[
-                                    'summary'] = f"{(val['sum'] * val['sum_level'] ** 2 / val['sum_general']) / insights['period']}"
+                                    'summary'] = (val['sum'] * val['sum_level'] ** 2
+                                                  / val['sum_general']) / insights['period']
                             elif insights['api'] == 3:
                                 val[
-                                    'summary'] = f"{(val['sum_level'] / val['sum_general']) / insights['period']}"
+                                    'summary'] = (val['sum_level']
+                                                  / val['sum_general']) / insights['period']
                             elif insights['api'] == 4:
                                 val['summary'] = f"{(val['sum_level'] * 100) / insights['period']}"
 
