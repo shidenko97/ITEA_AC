@@ -1,8 +1,6 @@
 from hw_start import insights
 
 
-# sum, sum_level, sum_general  .... period
-
 def summary(insights):
     if isinstance(insights, dict):
         for key, value in insights.items():
@@ -28,8 +26,7 @@ def summary(insights):
                                                   / val['sum_general']) / insights['period']
                             elif insights['api'] == 3:
                                 val[
-                                    'summary'] = (val['sum_level'] / val['sum_general']) \
-                                                 / insights['period']
+                                    'summary'] = (val['sum_level'] / val['sum_general']) / insights['period']
                             elif insights['api'] == 4:
                                 val['summary'] = f"{(val['sum_level'] * 100) / insights['period']}"
 
@@ -58,16 +55,15 @@ def summary(insights):
 
                             if insights['api'] == 1:
                                 val[
-                                    'summary'] = (val['sum'] * val['sum_level']
-                                                  / val['sum_general']) / insights['period']
+                                    'summary'] = (val['sum'] * val['sum_level'] / val['sum_general']) \
+                                                 / insights['period']
                             elif insights['api'] == 2:
                                 val[
                                     'summary'] = (val['sum'] * val['sum_level'] ** 2
                                                   / val['sum_general']) / insights['period']
                             elif insights['api'] == 3:
                                 val[
-                                    'summary'] = (val['sum_level']
-                                                  / val['sum_general']) / insights['period']
+                                    'summary'] = (val['sum_level'] / val['sum_general']) / insights['period']
                             elif insights['api'] == 4:
                                 val['summary'] = f"{(val['sum_level'] * 100) / insights['period']}"
 
