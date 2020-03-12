@@ -2,9 +2,18 @@ from Serhii_Hidenko.l_2_oop.hw.metricsummary import MetricSummary
 
 
 class BaseInsight:
-
-    def __init__(self, metric_name=None, api=None, report_name=None, objective=None, unit=None, currency=None,
-                 validator_insight_type=None, metric_summary=None, **kwargs):
+    def __init__(
+        self,
+        metric_name=None,
+        api=None,
+        report_name=None,
+        objective=None,
+        unit=None,
+        currency=None,
+        validator_insight_type=None,
+        metric_summary=None,
+        **kwargs,
+    ):
 
         self.api = api
 
@@ -43,11 +52,23 @@ class BaseInsight:
         if not isinstance(metrics, dict):
             return {}
 
-        metric_attributes = [attr for attr in dir(MetricSummary()) if not attr.startswith("__")
-                             and not attr.endswith("__") and not attr.startswith("_")]
+        metric_attributes = [
+            attr
+            for attr in dir(MetricSummary())
+            if not attr.startswith("__")
+            and not attr.endswith("__")
+            and not attr.startswith("_")
+        ]
 
         for key, params in metrics.items():
-            metrics[key] = MetricSummary(**dict(filter(lambda param: param[0] in metric_attributes, params.items())))
+            metrics[key] = MetricSummary(
+                **dict(
+                    filter(
+                        lambda param: param[0] in metric_attributes,
+                        params.items(),
+                    )
+                )
+            )
 
         return metrics
 
@@ -63,4 +84,6 @@ class BaseInsight:
         if not isinstance(other, BaseInsight):
             return False
 
-        return hash((self.api, self.objective, self.id)) == hash((other.api, other.objective, other.id))
+        return hash((self.api, self.objective, self.id)) == hash(
+            (other.api, other.objective, other.id)
+        )

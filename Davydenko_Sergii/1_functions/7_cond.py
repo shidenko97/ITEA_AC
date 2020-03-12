@@ -1,5 +1,5 @@
 from hw_start import insights
-from Remove_unused import METR_LIST, METR_SUMS
+from Remove_unused import METR_SUMS
 
 
 # Done
@@ -10,8 +10,10 @@ def first_check(insights):
         for key, value in insights.items():
             if key == METR_SUMS:
                 for i in map(dict, value):
-                    return print(f"The sums M_S is {i['sum'] + i['sum_level'] + i['sum_general']}, "
-                                 f"and average M_S is ")
+                    return print(
+                        f"The sums M_S is {i['sum'] + i['sum_level'] + i['sum_general']}, "
+                        f"and average M_S is "
+                    )
             else:
                 first_check(value)
 

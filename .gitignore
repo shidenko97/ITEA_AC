@@ -126,4 +126,4 @@ dmypy.json
 # Pycharm
 .idea/
 
-*.DC_Store
+**.DS_Store

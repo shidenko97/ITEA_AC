@@ -1,5 +1,4 @@
 class Animals:
-
     def __init__(self, name, age):
         self.name = name
         self.age = age
@@ -29,6 +28,7 @@ class Dog(Animals):
 
 class SuperCat(Cat):
     pass
+
 
 murka = Cat(name="Murka", age=1)
 sharik = Dog(name="Sharik", age=2)
