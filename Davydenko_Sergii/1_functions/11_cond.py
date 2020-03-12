@@ -74,7 +74,6 @@ def summary(insights):
             except Exception as error:
                 print(f'Houston we have {error}')
 
-
     elif isinstance(insights, list):
         for insight in insights:
             summary(insight)
