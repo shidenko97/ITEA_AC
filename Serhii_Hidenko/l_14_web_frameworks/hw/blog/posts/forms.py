@@ -1,4 +1,4 @@
-from wtforms import Form, StringField, TextAreaField
+from wtforms import Form, StringField, TextAreaField, HiddenField
 
 
 class PostForm(Form):
@@ -8,3 +8,8 @@ class PostForm(Form):
 
 class TagForm(Form):
     name = StringField('name')
+
+
+class CommentForm(Form):
+    name = StringField('name')
+    text = TextAreaField('text')

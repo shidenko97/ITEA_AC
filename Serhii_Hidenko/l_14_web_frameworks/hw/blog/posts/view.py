@@ -3,8 +3,8 @@ from flask import render_template
 from flask_security import login_required
 
 from blog import db
-from blog.posts.models import Post, Tag
-from blog.posts.forms import PostForm, TagForm
+from blog.posts.models import Post, Tag, Comment
+from blog.posts.forms import PostForm, TagForm, CommentForm
 
 posts = Blueprint('posts', __name__, template_folder='templates')
 
@@ -68,7 +68,10 @@ def index():
 def post_detail(slug):
     post = Post.query.filter(Post.slug == slug).first_or_404()
     tags = post.tags
-    return render_template('posts/post_detail.html', post=post, tags=tags)
+    comments = post.comments
+    form = CommentForm()
+    return render_template('posts/post_detail.html', post=post, tags=tags,
+                           comments=comments, form=form)
 
 
 # http://localhost/blog/tag/python
@@ -131,5 +134,22 @@ def dislike_post(slug):
 
     post.dislike_count += 1
     db.session.commit()
+
+    return redirect(url_for('posts.post_detail', slug=post.slug))
+
+
+@posts.route('/comment/<slug>/', methods=['POST'])
+@login_required
+def comment(slug):
+    post = Post.query.filter(Post.slug == slug).first_or_404()
+
+    form = CommentForm(formdata=request.form)
+
+    if form.validate():
+        current_app.logger.exception('Something wrong')
+        comment = Comment(post_id=post.id, name=form.name.data,
+                          text=form.text.data)
+        db.session.add(comment)
+        db.session.commit()
 
     return redirect(url_for('posts.post_detail', slug=post.slug))
