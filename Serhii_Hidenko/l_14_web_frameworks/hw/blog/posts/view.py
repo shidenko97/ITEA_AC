@@ -111,3 +111,25 @@ def edit_tag(slug):
 
     form = TagForm(obj=tag)
     return render_template('posts/edit_tag.html', tag=tag, form=form)
+
+
+@posts.route('/like-post/<slug>', methods=['GET'])
+@login_required
+def like_post(slug):
+    post = Post.query.filter(Post.slug == slug).first_or_404()
+
+    post.like_count += 1
+    db.session.commit()
+
+    return redirect(url_for('posts.post_detail', slug=post.slug))
+
+
+@posts.route('/dislike-post/<slug>', methods=['GET'])
+@login_required
+def dislike_post(slug):
+    post = Post.query.filter(Post.slug == slug).first_or_404()
+
+    post.dislike_count += 1
+    db.session.commit()
+
+    return redirect(url_for('posts.post_detail', slug=post.slug))

@@ -19,6 +19,10 @@
     <div class="main-content">
         {{ post.body }}
     </div>
+    <div>
+        <a href="{{ url_for('posts.like_post', slug=post.slug) }}" class="btn btn-success">Like <span class="badge">{{ post.like_count }}</span></a>
+        <a href="{{ url_for('posts.dislike_post', slug=post.slug) }}" class="btn btn-danger">Dislike <span class="badge">{{ post.dislike_count }}</span></a>
+    </div>
 {% endblock %}
 
 {% block button %}
