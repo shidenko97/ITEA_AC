@@ -4,7 +4,7 @@ from flask_security import login_required
 
 from blog import db
 from blog.posts.models import Post, Tag
-from blog.posts.forms import PostForm
+from blog.posts.forms import PostForm, TagForm
 
 posts = Blueprint('posts', __name__, template_folder='templates')
 
@@ -77,3 +77,37 @@ def tag_detail(slug):
     tag = Tag.query.filter(Tag.slug == slug).first_or_404()
     posts = tag.posts.all()
     return render_template('posts/tag_detail.html', tag=tag, posts=posts)
+
+
+@posts.route('/create-tag', methods=['POST', 'GET'])
+@login_required
+def create_tag():
+    if request.method == 'POST':
+        name = request.form['name']
+
+        try:
+            tag = Tag(name=name)
+            db.session.add(tag)
+            db.session.commit()
+        except:
+            current_app.logger.exception('Something wrong')
+
+        return redirect(url_for('posts.index'))
+    form = TagForm()
+    return render_template('posts/create_tag.html', form=form)
+
+
+@posts.route('/<slug>/edit-tag/', methods=['POST', 'GET'])
+@login_required
+def edit_tag(slug):
+    tag = Tag.query.filter(Tag.slug == slug).first_or_404()
+
+    if request.method == 'POST':
+        form = TagForm(formdata=request.form, obj=tag)
+        form.populate_obj(tag)
+        db.session.commit()
+
+        return redirect(url_for('posts.index'))
+
+    form = TagForm(obj=tag)
+    return render_template('posts/edit_tag.html', tag=tag, form=form)
