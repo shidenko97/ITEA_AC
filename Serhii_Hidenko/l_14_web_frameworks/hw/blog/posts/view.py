@@ -9,7 +9,7 @@ from blog.posts.forms import PostForm, TagForm, CommentForm
 posts = Blueprint('posts', __name__, template_folder='templates')
 
 
-#http://localhost/blog/create
+# http://localhost/blog/create
 @posts.route('/create', methods=['POST', 'GET'])
 @login_required
 def create_post():
@@ -17,12 +17,9 @@ def create_post():
         title = request.form['title']
         body = request.form['body']
 
-        try:
-            post = Post(title=title, body=body)
-            db.session.add(post)
-            db.session.commit()
-        except:
-            current_app.logger.exception('Something wrong')
+        post = Post(title=title, body=body)
+        db.session.add(post)
+        db.session.commit()
 
         return redirect(url_for('posts.index'))
     form = PostForm()
@@ -88,12 +85,9 @@ def create_tag():
     if request.method == 'POST':
         name = request.form['name']
 
-        try:
-            tag = Tag(name=name)
-            db.session.add(tag)
-            db.session.commit()
-        except:
-            current_app.logger.exception('Something wrong')
+        tag = Tag(name=name)
+        db.session.add(tag)
+        db.session.commit()
 
         return redirect(url_for('posts.index'))
     form = TagForm()
