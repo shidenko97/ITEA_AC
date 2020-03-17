@@ -1,0 +1,17 @@
+{% extends 'main.html' %}
+
+{% block title %}
+	File parsing status [{{ task_id }}]
+{% endblock %}
+
+{% block content_title %}
+	File parsing status [{{ task_id }}]
+{% endblock %}
+
+{% block content %}
+
+	{% for key, val in task_info.items() %}
+		<p><b>{{ key }}: </b>{{ val }}</p>
+	{% endfor %}
+
+{% endblock %}
