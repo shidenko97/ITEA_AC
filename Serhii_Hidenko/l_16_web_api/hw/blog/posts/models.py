@@ -5,8 +5,9 @@ from blog.posts.utils import slugify
 
 post_tags = db.Table(
     'post_tags',
-    db.Column('post_id', db.Integer, db.ForeignKey('post.id')),
-    db.Column('tag_id', db.Integer, db.ForeignKey('tag.id'))
+    db.Column('post_id', db.Integer, db.ForeignKey('post.id',
+                                                   ondelete="CASCADE")),
+    db.Column('tag_id', db.Integer, db.ForeignKey('tag.id', ondelete="CASCADE"))
 )
 
 
@@ -21,7 +22,8 @@ class Post(db.Model):
     tags = db.relationship(
         'Tag',
         secondary=post_tags,
-        backref=db.backref('posts', lazy='dynamic')
+        backref=db.backref('posts', lazy='dynamic'),
+        cascade="all,delete"
     )
     comments = db.relationship('Comment')
 
@@ -56,7 +58,9 @@ class Tag(db.Model):
 
 class Comment(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    post_id = db.Column('post_id', db.Integer, db.ForeignKey('post.id'))
+    post_id = db.Column('post_id',
+                        db.Integer,
+                        db.ForeignKey('post.id', ondelete="CASCADE"))
     name = db.Column(db.Text)
     text = db.Column(db.Text)
     datetime = db.Column(db.DateTime, default=datetime.now())

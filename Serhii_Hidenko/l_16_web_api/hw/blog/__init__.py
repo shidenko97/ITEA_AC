@@ -18,10 +18,12 @@ def create_app():
     from blog.errors.view import errors
     from blog.main.view import main
     from blog.posts.view import posts
+    from blog.api import api_bp
 
     app.register_blueprint(errors)
     app.register_blueprint(main)
     app.register_blueprint(posts, url_prefix='/blog')
+    app.register_blueprint(api_bp, url_prefix='/api')
 
     ### ADMIN ###
     from blog.posts.models import Post, Tag
