@@ -2,8 +2,8 @@ from flask import request
 from sqlalchemy.orm.exc import NoResultFound
 
 from blog.api.utils import (get_all_posts, create_post, get_post, delete_post,
-                       change_post, get_all_tags, create_tag, get_tag,
-                       delete_tag, change_tag)
+                            change_post, get_all_tags, create_tag, get_tag,
+                            delete_tag, change_tag)
 from flask_restplus import fields, Resource, Namespace
 
 
