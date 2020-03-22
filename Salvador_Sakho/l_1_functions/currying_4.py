@@ -18,9 +18,6 @@ add_10_100 = partial(add_10, 100)
 print(add_10_100(1000))
 
 
-
-
-
 def curry(fnc):
     def inner(arg):
         if len(signature(fnc).parameters) == 1:
