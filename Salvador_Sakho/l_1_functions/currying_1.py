@@ -10,7 +10,7 @@ def change(b, c, d):
 
 
 # v(a, b, c, d, e) = w(x(y(z(a, b, c, d, e))))
-def change(a=None):
+def change1(a=None):
     def w(b):
         def x(c):
             def y(d):
