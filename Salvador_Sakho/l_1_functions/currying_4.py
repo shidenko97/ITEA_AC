@@ -2,6 +2,9 @@
 # https://habr.com/en/sandbox/43504/
 # https://habr.com/ru/post/335866/
 
+from functools import partial
+from inspect import signature
+
 
 def add(a, b, c):
     return a + b + c
@@ -9,14 +12,13 @@ def add(a, b, c):
 
 print(add(10, 100, 1000))
 
-from functools import partial
 
 add_10 = partial(add, 10)
 add_10_100 = partial(add_10, 100)
 print(add_10_100(1000))
 
 
-from inspect import signature
+
 
 
 def curry(fnc):
