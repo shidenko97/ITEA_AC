@@ -17,10 +17,19 @@ def insight_builder(insight_dict) -> dict:
 
     insight_class = get_class_for_insight(api)
 
-    attributes = [attr for attr in dir(insight_class(**insight)) if not attr.startswith("__")
-                  and not attr.endswith("__") and not attr.startswith("_")]
+    attributes = [
+        attr
+        for attr in dir(insight_class(**insight))
+        if not attr.startswith("__")
+        and not attr.endswith("__")
+        and not attr.startswith("_")
+    ]
 
-    return {attribute: insight_dict[attribute] for attribute in attributes if attribute in insight_dict}
+    return {
+        attribute: insight_dict[attribute]
+        for attribute in attributes
+        if attribute in insight_dict
+    }
 
 
 if __name__ == "__main__":

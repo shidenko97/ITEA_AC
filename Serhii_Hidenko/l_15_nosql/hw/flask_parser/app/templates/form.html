@@ -1,0 +1,27 @@
+{% extends 'main.html' %}
+
+{% block title %}
+	File upload form
+{% endblock %}
+
+{% block content_title %}
+	File upload form
+{% endblock %}
+
+{% block content %}
+
+    <div class="col-md-6">
+        <form action="{{ url_for('parse_file') }}" method="POST" enctype="multipart/form-data">
+            {% for field in form %}
+                <div class="form-group">
+                    {{ field.label(class='control-label') }}
+                    {{ field(class='form-control') }}
+                </div>
+            {% endfor %}
+
+            <button type="submit" class="btn btn-success">Parse</button>
+
+        </form>
+    </div>
+
+{% endblock %}

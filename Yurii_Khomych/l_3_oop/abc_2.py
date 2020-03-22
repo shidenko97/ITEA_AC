@@ -17,7 +17,6 @@ class Base(metaclass=ABCMeta):
 
 
 class Concrete(Base):
-
     def bar(self):
         pass
 

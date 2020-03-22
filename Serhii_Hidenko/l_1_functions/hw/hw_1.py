@@ -24,13 +24,19 @@ def recursive_remove_unused(dict_block, unused) -> dict:
             elif isinstance(unused[item_key], dict):
 
                 if isinstance(item_value, dict):
-                    result_dict[item_key] = recursive_remove_unused(item_value, unused=unused[item_key])
+                    result_dict[item_key] = recursive_remove_unused(
+                        item_value, unused=unused[item_key]
+                    )
                 elif isinstance(item_value, list):
 
                     sub_list = []
 
                     for list_item in item_value:
-                        sub_list.append(recursive_remove_unused(list_item, unused=unused[item_key]))
+                        sub_list.append(
+                            recursive_remove_unused(
+                                list_item, unused=unused[item_key]
+                            )
+                        )
 
                     result_dict[item_key] = sub_list
 
@@ -91,11 +97,15 @@ def recursive_search_parameter(insight_to_search, parameter) -> list:
         if key == parameter:
             list_of_results.append(value)
         elif isinstance(value, dict):
-            list_of_results.extend(recursive_search_parameter(value, parameter))
+            list_of_results.extend(
+                recursive_search_parameter(value, parameter)
+            )
         elif isinstance(value, list):
             for item in value:
                 if isinstance(item, dict):
-                    list_of_results.extend(recursive_search_parameter(item, parameter))
+                    list_of_results.extend(
+                        recursive_search_parameter(item, parameter)
+                    )
 
     return list_of_results
 
@@ -108,12 +118,8 @@ if __name__ == "__main__":
         "total_count": None,
         "page_id": None,
         "entities_affected": {
-            "entities": {
-                "link": None,
-                "status": None,
-                "days_in_data": None
-            }
-        }
+            "entities": {"link": None, "status": None, "days_in_data": None}
+        },
     }
 
     result = []
@@ -134,13 +140,18 @@ if __name__ == "__main__":
         print(f"\t\tFirst task result: {insight}")
 
         # Second task in README.md
-        if "entities_affected" in insight and "table_columns" in insight["entities_affected"]:
+        if (
+            "entities_affected" in insight
+            and "table_columns" in insight["entities_affected"]
+        ):
 
             table_columns = []
 
             for table_column in insight["entities_affected"]["table_columns"]:
 
-                if ("unit" in table_column and table_column["unit"] == "EUR") or "unit" not in table_column:
+                if (
+                    "unit" in table_column and table_column["unit"] == "EUR"
+                ) or "unit" not in table_column:
                     table_columns.append(table_column)
 
             insight["entities_affected"]["table_columns"] = table_columns
@@ -151,7 +162,10 @@ if __name__ == "__main__":
 
             for metric_sum in insight["metric_sums"]:
 
-                if ("unit_key" in metric_sum and metric_sum["unit_key"] == "EUR") or "unit_key" not in metric_sum:
+                if (
+                    "unit_key" in metric_sum
+                    and metric_sum["unit_key"] == "EUR"
+                ) or "unit_key" not in metric_sum:
                     metrics_sums.append(metric_sum)
 
         except KeyError as err:
@@ -167,7 +181,9 @@ if __name__ == "__main__":
             list_of_objectives.append(insight["objective"])
 
         # Fifth task in README.md
-        insights_campaigns[i] = recursive_search_parameter(insight, "campaign_id")
+        insights_campaigns[i] = recursive_search_parameter(
+            insight, "campaign_id"
+        )
 
         # Seventh task in README.md
         if "metric_sums" in insight.keys():
@@ -177,24 +193,41 @@ if __name__ == "__main__":
 
             print(f"\t\tSeventh task result:")
 
-            for metric, metric_val in {"sums": sums, "sum_levels": sum_levels, "sum_generals": sum_generals}.items():
+            for metric, metric_val in {
+                "sums": sums,
+                "sum_levels": sum_levels,
+                "sum_generals": sum_generals,
+            }.items():
                 metrics_sum = sum(metric_val)
-                print(f"\t\t\tParam {metric} - sum: {metrics_sum}, avg: {metrics_sum / len(metric_val)}")
+                print(
+                    f"\t\t\tParam {metric} - sum: {metrics_sum}, avg: {metrics_sum / len(metric_val)}"
+                )
 
         transfer_func = transform_param(insight)
 
         # Ninth task in README.md
-        insight = transfer_func(param="report_name", func=lambda value: value.upper() if value == "device" else value)
+        insight = transfer_func(
+            param="report_name",
+            func=lambda value: value.upper() if value == "device" else value,
+        )
         print(f"\t\tNinth task result: {insight}")
 
         # Tenth task in README.md
-        insight = transfer_func(param="page_id", func=lambda value: None if value == "(not set)" else value)
+        insight = transfer_func(
+            param="page_id",
+            func=lambda value: None if value == "(not set)" else value,
+        )
         print(f"\t\tTenth task result: {insight}")
 
     print(f"\tThird task result: {list_of_objectives}")
 
     # Fourth task in README.md
-    dict_of_objectives = dict(map(lambda o: (o, list_of_objectives[o]), range(len(list_of_objectives))))
+    dict_of_objectives = dict(
+        map(
+            lambda o: (o, list_of_objectives[o]),
+            range(len(list_of_objectives)),
+        )
+    )
     print(f"\tFourth task result: {dict_of_objectives}")
 
     print(f"\tFifth task result: {insights_campaigns}")
@@ -204,6 +237,10 @@ if __name__ == "__main__":
     print(f"\tSixth task result: {unique_objectives}")
 
     # Eighth task in README.md
-    sorted_insights = sorted(insights, key=lambda ins: get_insight_sort_string(ins, "type", "api", "report_name",
-                                                                                    "objective"))
+    sorted_insights = sorted(
+        insights,
+        key=lambda ins: get_insight_sort_string(
+            ins, "type", "api", "report_name", "objective"
+        ),
+    )
     print(f"\tEighth task result: {sorted_insights}")

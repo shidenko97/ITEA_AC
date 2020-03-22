@@ -1,12 +1,12 @@
 # HW
 1. Develop metaclass for BaseInsight class from lesson 2 hw. 
-    * Set attribute to class depend on api parameter:
-        * If api == 1 set period attribute value == 3;
-        * If api == 2 set period attribute value == 7;
-        * If api == 3 set period attribute value == 10;
+    * Set attribute to class depend on class name:
+        * If class name `FacebookInsight` set period attribute value == 3;
+        * If class name `GoogleInsight` set period attribute value == 7;
+        * If class name `TwitterInsight` set period attribute value == 10;
         * In other cases set period attribute value == 30;
-    * Print each value of "network"(FB, Google...) dependent insight;
 2. Give BaseInsight class functionality:
+    * Print each value of "network"(FB, Google...) dependent insight;
     * Define method for calculate sum of all attributes inside MetricSummary class.
     * Calculate sum of `metrics` for BaseInsight (MetricSummary instances attributes) if `metric` value > 30.
     * Define len magic method like len of `metrics`.

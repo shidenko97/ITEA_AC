@@ -1,0 +1,17 @@
+{
+  "breakdowns": [
+    "operating_system",
+    "make",
+    "model",
+    "age",
+    "gender",
+    "interest_category_name",
+    "interest_category_id",
+    "country",
+    "region"
+  ],
+  "project_id_to_project_execution": {
+    "9231": [797449, 798294, 800204, 801162, 802120],
+    "9267": [806978]
+  }
+}

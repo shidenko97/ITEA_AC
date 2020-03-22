@@ -7,12 +7,9 @@ IGNORED_DIRS: List[str] = [
     # "sql_homework/homeworks/",
 ]
 
-git_output: List[str] = subprocess.check_output([
-    "/usr/bin/git",
-    "diff",
-    "--dirstat=files",
-    "@..origin/master"
-]).decode().strip().split("\n")
+git_output: List[str] = subprocess.check_output(
+    ["/usr/bin/git", "diff", "--dirstat=files", "@..origin/master"]
+).decode().strip().split("\n")
 
 cov_folder_list = []
 for changed_dir in git_output:
