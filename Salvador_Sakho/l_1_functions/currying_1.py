@@ -1,10 +1,11 @@
 # Currying in Python - Many to Single Argument
 
 # a(x) = b(c(d(x)))
+
+
 def change(b, c, d):
     def a(x):
         return b(c(d(x)))
-
     return a
 
 
@@ -15,13 +16,9 @@ def change(a=None):
             def y(d):
                 def z(e):
                     print(a, b, c, d, e)
-
                 return z
-
             return y
-
         return x
-
     return w
 
 
