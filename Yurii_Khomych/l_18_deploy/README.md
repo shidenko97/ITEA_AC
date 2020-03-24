@@ -3,6 +3,7 @@
 1. [Install Docker-Compose](https://docs.docker.com/compose/install/)
 1. [AWS](http://aws.amazon.com)
 1. [GC](https://cloud.google.com)
+1. [Flask blog api tutorial](https://github.com/olawalejarvis/blog_api_tutorial)
 1. [Swagger](https://cloud.google.com)
 1. [Flask deploy](https://github.com/YuriiKhomych/flask-deploy)
 1. [Deployment](https://www.fullstackpython.com/deployment.html)
@@ -11,7 +12,7 @@
 1. [How to build a web application using Flask and deploy it to the cloud](https://www.freecodecamp.org/news/how-to-build-a-web-application-using-flask-and-deploy-it-to-the-cloud-3551c985e492/)
 1. [How To Build and Deploy a Flask Application Using Docker on Ubuntu 18.04](https://www.digitalocean.com/community/tutorials/how-to-build-and-deploy-a-flask-application-using-docker-on-ubuntu-18-04)
 1. [Deploying a Python Web App on AWS](https://towardsdatascience.com/deploying-a-python-web-app-on-aws-57ed772b2319)
-1. [AIOHTTP APPLICATION TODO](https://www.digitalocean.com/community/tutorials/how-to-build-and-deploy-a-flask-application-using-docker-on-ubuntu-18-04)
+1. [Flask APPLICATION](https://www.digitalocean.com/community/tutorials/how-to-build-and-deploy-a-flask-application-using-docker-on-ubuntu-18-04)
 1. [FLASK APPLICATION TODO](https://www.youtube.com/playlist?list=PLlWXhlUMyooZr5R2u2Zwxt6Pw6iwBo5y5)
 1. [Kubernetes](https://www.digitalocean.com/community/tutorials/how-to-build-and-deploy-a-flask-application-using-docker-on-ubuntu-18-04)
 
@@ -100,3 +101,21 @@
 5. Algorithms and data structures
 6. Functional programming vs OOP
 7. Big O notation
+
+#### Recommended tasks on leetcode:
+1. [Task](https://leetcode.com/articles/reverse-integer/)
+2. [Task](https://leetcode.com/articles/longest-common-prefix/)
+3. [Task](https://leetcode.com/articles/remove-duplicates-from-sorted-array)
+4. [Task](https://leetcode.com/articles/remove-element/)
+5. [Task](https://leetcode.com/articles/range-sum-of-bst/)
+6. [Task](https://leetcode.com/articles/unique-morse-code-words/)
+7. [Task](https://leetcode.com/articles/big-countries/)
+8. [Task](https://leetcode.com/articles/sort-array-by-parity/)
+9. [Task](https://leetcode.com/articles/swap-salary/)
+10. [Task](https://leetcode.com/articles/number-of-recent-calls/)
+11. [Task](https://leetcode.com/articles/employee-bonus/)
+12. [Task](https://leetcode.com/articles/duplicate-emails/)
+13. [Task](https://leetcode.com/articles/duplicate-zeros/)
+14. [Task](https://leetcode.com/articles/employee-importance/)
+15. [Task](https://leetcode.com/articles/first-unique-character-in-a-string/)
+16. [Task](https://leetcode.com/articles/binary-search/)
